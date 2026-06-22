@@ -124,7 +124,7 @@
 </div>
 
 <script>
-    // --- 1. KHAI BÁO DỮ LIỆU GỐC CHUẨN XÁC 100% (ĐÃ KHÔI PHỤC MẢNG TĨNH) ---
+    // --- 1. DANH SÁCH MẢNG CHUẨN XÁC NGUYÊN BẢN CỦA NGƯỜI DÙNG ---
     const rawXuList = ["Thục quỳ đỏ", "Thục quỳ hồng", "Thục quỳ vàng", "Thanh cúc lam", "Mạch môn tím", "Hoa sao nhái trắng", "Hoa baby hồng", "Hoa baby lam", "Hoa lồng đèn đỏ", "Vạn tuế lá xanh", "Trúc đào đỏ tím", "Hải đường đỏ", "Hải đường vàng", "Đỗ quyên hồng", "Đỗ quyên vàng", "Đỗ quyên đỏ", "Tử linh lan hồng", "Tử linh lan đỏ", "Tử linh lan tím", "Hồng jacqueline trắng", "Hoa thuý châu tím", "Hoa thuý châu trắng", "Ghim cài lửa", "Ghim cài vàng mật", "Huệ hosta lam", "Hoa báo xuân hồng", "Hoa huyên tím trắng", "Hoa anh thảo tím nhạt", "Hoa anh thảo xanh nhạt", "Hoa anh thảo hồng nhạt", "Huệ hosta tím", "Nhài nhật", "Lan phượng vĩ đỏ", "Mạch môn hồng phấn", "Hoa lộ vi vàng", "Hoa lộ vi trắng", "Cúc thược dược cam", "Cúc thược dược đen", "Lan vũ nữ vàng", "Hoa poppy himalaya vàng", "Hoa poppy himalaya xanh", "Hoa phi yến tím", "Hoa anh thảo vàng", "Hồng lenten vàng", "Cây sống đời đỏ", "Cây sống đời vàng", "Mộc hương vàng", "Mộc hương trắng", "Thược dược đỏ", "Lay ơn tím", "Tường vi hồng", "Lay ơn trắng", "Hải quỳ cam", "San hô cam", "Hải quỳ đỏ", "Hoa hải quỳ tím", "Hoa hải quỳ hồng", "Hoa hải quỳ trắng", "Thược dược trắng", "Hồng môn phấn", "Thanh cúc tím", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Lạc tân phụ tím", "Tỏi trời", "Trúc đào hồng nhạt", "Địa lan trắng", "Hoa hành tím", "Diên đức vĩ trắng vàng", "Hồng lenten đỏ", "Mộc hương cam", "Vạn tuế lá lam", "Thanh cúc hồng", "Hoa baby trắng", "San hô tím", "Hoa báo xuân vàng", "Me đất cam vàng", "Thược dược dương xỉ hồng đào", "Thược dược dương xỉ đỏ tươi", "Ghim cài hồng hạnh"];
 
     const rawPinkList = ["Ngân hà chiếu nhụy", "Chép vàng vượt sóng", "Thiên cung", "Thanh loan bích vũ", "Có rồng ắt linh", "Gia nguyệt neo thuyền câu cá", "Mai nguyệt huyền âm", "Đình hoa đêm mộng", "Liễu nguyệt én hót bên đình", "Hạnh nguyệt nghỉ dưới bóng hoa", "Trái tim mộng ảo", "Sắc xuân núi non"];
@@ -162,7 +162,7 @@
         { name: "Zishang(Naaa)", flowers: ["Dạ yến thảo lam", "Hoa anh thảo hồng", "Hoa anh thảo xanh", "Lạp mai đỏ", "Hồng champagne", "Hoa hải quỳ trắng", "Hoa hành tím", "Vạn tuế lá lam", "Hoa poppy himalaya xanh", "Hải quỳ đỏ", "Thược dược đỏ", "Thược dược trắng", "Cây holly vòng xanh", "Bụp hồng cận hồng"] }
     ];
 
-    // --- 2. ÁNH XẠ PHẨM HOA BẰNG MẢNG TĨNH AN TOÀN 100% ---
+    // --- 2. ÁNH XẠ PHẨM HOA BẰNG BỘ LỌC TĨNH CHUẨN XÁC GIỮ NGUYÊN BẢN GỐC ---
     const cleanFormat = str => str ? str.trim().toLowerCase() : '';
 
     const flowerTierMap = {};
@@ -178,25 +178,25 @@
     rawPurpleList.forEach(name => displayNameMap.set(cleanFormat(name), name));
     rawGreenList.forEach(name => displayNameMap.set(cleanFormat(name), name));
 
-    // Điền bổ sung các loại hoa không phân nhóm (Hoa lam/thường) vào Map hiển thị
+    // Điền bổ sung các loại hoa LAM / HOA THƯỜNG không phân nhóm màu vào Map hiển thị
     rawMembers.forEach(m => m.flowers.forEach(f => {
         const cf = cleanFormat(f);
         if (!displayNameMap.has(cf)) displayNameMap.set(cf, f); 
     }));
 
     function getFlowerWeight(cf) {
-        const score = flowerTierMap[cf] || 0; // 0 có nghĩa là hoa thường/không tính điểm
+        const score = flowerTierMap[cf] || 0; // 0 có nghĩa là hoa thường/hoa lam không tính điểm phẩm
         const tierClasses = { 
             4: 'tier-pink', 
             3: 'tier-orange', 
             2: 'tier-purple', 
             1: 'tier-green', 
-            0: '' // class trống cho hoa thường
+            0: '' // Class trống cho hoa lam/hoa thường
         };
         return { score, className: tierClasses[score] };
     }
 
-    // Logic: Hiển thị đầy đủ hoa của họ, nhưng đếm hạng (totalCount) nghiêm ngặt chỉ lấy hoa có Tier >= 2
+    // Logic tính toán: Hiển thị đầy đủ hoa của từng người, đếm hạng (totalCount) nghiêm ngặt chỉ lấy hoa có Tier >= 2
     const membersData = rawMembers.map(m => {
         const uniqueCleanFlowers = [...new Set(m.flowers.map(f => cleanFormat(f)))];
         const totalCount = uniqueCleanFlowers.filter(cf => getFlowerWeight(cf).score >= 2).length;
@@ -211,7 +211,7 @@
         });
     });
 
-    // --- 3. XỬ LÝ GIAO DIỆN VÀ TÍNH NĂNG ---
+    // --- 3. XỬ LÝ GIAO DIỆN VÀ TÍNH NĂNG WIDGETS ---
     const mainRankArea = document.getElementById('mainRankArea');
     const searchResultArea = document.getElementById('searchResultArea');
     const missingArea = document.getElementById('missingArea');
@@ -235,7 +235,7 @@
             
             collapseItem.className = isBoy ? "cute-rank-item gentleman-card-style" : "cute-rank-item";
 
-            // Sắp xếp hoa hiển thị: Ưu tiên Phẩm cao đứng trước, hoa thường đứng sau cùng
+            // Sắp xếp hoa hiển thị: Ưu tiên Phẩm cao đứng trước, hoa thường không màu đứng sau cùng
             const sortedFlowersWithTier = item.allFlowers.map(f => ({ name: f, ...getFlowerWeight(f) }))
                 .sort((a, b) => b.score - a.score || displayNameMap.get(a.name).localeCompare(displayNameMap.get(b.name), 'vi'));
 
@@ -256,7 +256,7 @@
                         <span style="font-weight: 700; color: ${numColor}; width: 24px; text-align: center;">#${index + 1}</span>
                         <span>${isBoy ? '🎩' : '👑'} ${item.name}</span>
                     </div>
-                    <span style="font-weight: 700; padding: 5px 12px; border-radius: 20px; font-size: 11px; ${isBoy ? 'color: #003049; background: #e0f2fe; border: 1px solid #bae6fd;' : 'color: #ff4d6d; background: #fff5f6; border: 1px solid #ffccd5;'}">${item.totalCount} phẩm tính điểm</span>
+                    <span style="font-weight: 700; padding: 5px 12px; border-radius: 20px; font-size: 11px; ${isBoy ? 'color: #003049; background: #e0f2fe; border: 1px solid #bae6fd;' : 'color: #ff4d6d; background: #fff5f6; border: 1px solid #ffccd5;'}">${item.totalCount} loại hoa tính điểm</span>
                 </div>
                 <div class="rank-content-box">
                     ${summaryHtml}
