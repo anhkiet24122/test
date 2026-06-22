@@ -129,9 +129,15 @@
 </div>
 
 <script>
-    // --- 1. KHAI BÁO DỮ LIỆU GỐC ---
-    const rawXuList = ["Thục quỳ đỏ", "Thục quỳ hồng", "Thục quỳ vàng", "Thanh cúc lam", "Mạch môn tím", "Hoa sao nhái trắng", "Hoa baby hồng", "Hoa baby lam", "Hoa lồng đèn đỏ", "Vạn tuế lá xanh", "Trúc đào đỏ tím", "Hải đường đỏ", "Hải đường vàng", "Đỗ quyên hồng", "Đỗ quyên vàng", "Đỗ quyên đỏ", "Tử linh lan hồng", "Tử linh lan đỏ", "Tử linh lan tím", "Hồng jacqueline trắng", "Hoa thuý châu tím", "Hoa thuý châu trắng", "Ghim cài lửa", "Ghim cài vàng mật", "Huệ hosta lam", "Hoa báo xuân hồng", "Hoa huyên tím trắng", "Hoa anh thảo tím nhạt", "Hoa anh thảo xanh nhạt", "Hoa anh thảo hồng nhạt", "Huệ hosta tím", "Nhài nhật", "Lan phượng vĩ đỏ", "Mạch môn hồng phấn", "Hoa lộ vi vàng", "Hoa lộ vi trắng", "Cúc thược dược cam", "Cúc thược dược đen", "Lan vũ nữ vàng", "Hoa poppy himalaya vàng", "Hoa poppy himalaya xanh", "Hoa phi yến tím", "Hoa anh thảo vàng", "Hồng lenten vàng", "Cây sống đời đỏ", "Cây sống đời vàng", "Mộc hương vàng", "Mộc hương trắng", "Thược dược đỏ", "Lay ơn tím", "Tường vi hồng", "Lay ơn trắng", "Hải quỳ cam", "San hô cam", "Hải quỳ đỏ", "Hoa hải quỳ tím", "Hoa hải quỳ hồng", "Hoa hải quỳ trắng", "Thược dược trắng", "Hồng môn phấn", "Thanh cúc tím", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Lạc tân phụ tím", "Tỏi trời", "Trúc đào hồng nhạt", "Địa lan trắng", "Hoa hành tím", "Diên vĩ đức trắng vàng", "Hồng lenten đỏ", "Mộc hương cam", "Vạn tuế lá lam", "Thanh cúc hồng", "Hoa baby trắng", "San hô tím", "Hoa báo xuân vàng", "Me đất cam vàng", "Thược dược dương xỉ hồng đào", "Thược dược dương xỉ đỏ tươi", "Ghim cài hồng hạnh"];
+    // --- 1. KHAI BÁO VÀ CHUẨN HÓA DỮ LIỆU GỐC ---
+    // Hàm chuẩn hóa: Fix lỗi Unicode tiếng Việt, cắt khoảng trắng, chỉ viết hoa chữ cái đầu tiên của chuỗi
+    const standardizeName = str => {
+        if (!str) return '';
+        const normalized = str.normalize('NFC').trim().toLowerCase();
+        return normalized.charAt(0).toUpperCase() + normalized.slice(1);
+    };
 
+    const rawXuList = ["Thục quỳ đỏ", "Thục quỳ hồng", "Thục quỳ vàng", "Thanh cúc lam", "Mạch môn tím", "Hoa sao nhái trắng", "Hoa baby hồng", "Hoa baby lam", "Hoa lồng đèn đỏ", "Vạn tuế lá xanh", "Trúc đào đỏ tím", "Hải đường đỏ", "Hải đường vàng", "Đỗ quyên hồng", "Đỗ quyên vàng", "Đỗ quyên đỏ", "Tử linh lan hồng", "Tử linh lan đỏ", "Tử linh lan tím", "Hồng jacqueline trắng", "Hoa thuý châu tím", "Hoa thuý châu trắng", "Ghim cài lửa", "Ghim cài vàng mật", "Huệ hosta lam", "Hoa báo xuân hồng", "Hoa huyên tím trắng", "Hoa anh thảo tím nhạt", "Hoa anh thảo xanh nhạt", "Hoa anh thảo hồng nhạt", "Huệ hosta tím", "Nhài nhật", "Lan phượng vĩ đỏ", "Mạch môn hồng phấn", "Hoa lộ vi vàng", "Hoa lộ vi trắng", "Cúc thược dược cam", "Cúc thược dược đen", "Lan vũ nữ vàng", "Hoa poppy himalaya vàng", "Hoa poppy himalaya xanh", "Hoa phi yến tím", "Hoa anh thảo vàng", "Hồng lenten vàng", "Cây sống đời đỏ", "Cây sống đời vàng", "Mộc hương vàng", "Mộc hương trắng", "Thược dược đỏ", "Lay ơn tím", "Tường vi hồng", "Lay ơn trắng", "Hải quỳ cam", "San hô cam", "Hải quỳ đỏ", "Hoa hải quỳ tím", "Hoa hải quỳ hồng", "Hoa hải quỳ trắng", "Thược dược trắng", "Hồng môn phấn", "Thanh cúc tím", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Lạc tân phụ tím", "Tỏi trời", "Trúc đào hồng nhạt", "Địa lan trắng", "Hoa hành tím", "Diên vĩ đức trắng vàng", "Hồng lenten đỏ", "Mộc hương cam", "Vạn tuế lá lam", "Thanh cúc hồng", "Hoa baby trắng", "San hô tím", "Hoa báo xuân vàng", "Me đất cam vàng", "Thược dược dương xỉ hồng đào", "Thược dược dương xỉ đỏ tươi", "Ghim cài hồng hạnh"];
     const rawPinkList = ["Ngân hà chiếu nhụy", "Chép vàng vượt sóng", "Thiên cung", "Thanh loan bích vũ", "Có rồng ắt linh", "Gia nguyệt neo thuyền câu cá", "Mai nguyệt huyền âm", "Đình hoa đêm mộng", "Liễu nguyệt én hót bên đình", "Hạnh nguyệt nghỉ dưới bóng hoa", "Trái tim mộng ảo", "Sắc xuân núi non"];
     const rawOrangeList = ["Mộc lan ngọc ngà", "Thuyền tiên sông ngân", "Bóng quế cành ngọc", "Tùng linh chiếu rọi", "Hồng cecil lam", "Hồng cecil phấn", "Lạp mai hương phi", "Lạp mai linh lung", "Mẫu đơn ánh tím", "Cá heo xanh", "Cá heo hồng", "Cá heo trắng", "Sắc cam mùa xuân", "Mẫu đơn ánh ngọc", "Mẫu đơn ánh xanh", "Tiên nữ rải hoa", "Phù dung hồng hộp báu", "Phù dung cam hộp báu", "Phù dung tím hộp báu", "Mưa bụi cô tô", "Trúc ánh sắc vàng", "Nguyệt quý mây hồng", "Nguyệt quý ánh vàng", "Nguyệt quý sắc cam", "Thỏ ngọc ôm ánh sáng", "Hạc gửi ngân hà", "Tử linh phúc lộc", "Chương hoa mộng điệp", "Sách mai điệp ảnh", "Hương hoa diên vĩ", "Đế vương hồng tía", "Đế vương lam lưu ly", "Đế vương xích diễm", "Cháo ngọt sương hoa", "Hương lam đêm", "Gấu hoa hồng", "Cừu bông ngọt ngào", "Cúc mẫu đơn tím nho", "Trái tim tìm mật", "Trái tim đá quý", "Ngọc lan lưu hương", "Diều giấy đón xuân", "Lạp mai lung linh", "Cúc mẫu đơn cam ráng chiều", "Hoa lung toả hương", "Tiếng sáo hoa lung"];
     const rawGreenList = ["Hoa thuý châu trắng", "Thanh cúc lam", "Lê bạch ngọc", "Thục quỳ đỏ", "Thục quỳ vàng", "Mạch môn tím", "Hoa sao nhái trắng", "Hoa baby trắng", "Hoa baby lam", "Hoa baby hồng", "Hoa lồng đèn đỏ", "Vạn tuế lá xanh", "Trúc đào đỏ tím", "Hải đường đỏ", "Hải đường vàng", "Đỗ quyên hồng", "Đỗ quyên vàng", "Đỗ quyên đỏ", "Tử linh lan hồng", "Tử linh lan đỏ", "Tử linh lan tím", "Hồng jacqueline trắng", "Hoa thuý châu tím", "Ghim cài lửa", "Ghim cài vàng mật", "Huệ hosta lam", "Hoa báo xuân hồng", "Hoa huyên tím trắng", "Hoa anh thảo tím nhạt", "Hoa anh thảo xanh nhạt", "Hoa anh thảo hồng nhạt", "Huệ hosta tím", "Thanh cúc tím", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Thanh cúc hồng", "Lạc tân phụ tím", "Thục quỳ hồng", "Tỏi trời", "Trúc đào hồng nhạt", "Mộc hương vàng", "Hoa báo xuân vàng", "Me đất cam vàng", "Thược dược dương xỉ hồng đào", "Thược dược dương xỉ đỏ tươi", "Ghim cài hồng hạnh"];
@@ -165,44 +171,44 @@
     ];
 
     // --- 2. HỆ THỐNG TRA CỨU TỐI ƯU ---
-    const cleanFormat = str => str ? str.trim().toLowerCase() : '';
+    // Khởi tạo các mảng đã được chuẩn hóa tự động
+    const xuList = [...new Set(rawXuList.map(standardizeName))];
+    const pinkList = rawPinkList.map(standardizeName);
+    const orangeList = rawOrangeList.map(standardizeName);
+    const purpleList = rawPurpleList.map(standardizeName);
+    const greenList = rawGreenList.map(standardizeName);
 
-    const displayNameMap = new Map();
-    const flowerOwnersMap = new Map();
+    const membersDataProcessed = rawMembers.map(m => ({
+        name: m.name,
+        flowers: [...new Set(m.flowers.map(standardizeName))]
+    }));
+
+    // Gán hạng cho từng loài hoa
     const flowerTierMap = new Map();
+    pinkList.forEach(f => flowerTierMap.set(f, 4));
+    orangeList.forEach(f => flowerTierMap.set(f, 3));
+    purpleList.forEach(f => flowerTierMap.set(f, 2));
+    greenList.forEach(f => flowerTierMap.set(f, 1));
 
-    rawPinkList.forEach(f => flowerTierMap.set(cleanFormat(f), 4));
-    rawOrangeList.forEach(f => flowerTierMap.set(cleanFormat(f), 3));
-    rawPurpleList.forEach(f => flowerTierMap.set(cleanFormat(f), 2));
-    rawGreenList.forEach(f => flowerTierMap.set(cleanFormat(f), 1));
-
-    [...rawXuList, ...rawPinkList, ...rawOrangeList, ...rawPurpleList, ...rawGreenList].forEach(f => {
-        const cf = cleanFormat(f);
-        if (!displayNameMap.has(cf)) {
-            displayNameMap.set(cf, f);
-            flowerOwnersMap.set(cf, []);
-        }
-    });
-
-    function getFlowerWeight(cf) {
-        const score = flowerTierMap.has(cf) ? flowerTierMap.get(cf) : 2; 
+    function getFlowerWeight(name) {
+        const score = flowerTierMap.get(name) || 2; 
         const tierClasses = { 1: 'tier-green', 2: 'tier-purple', 3: 'tier-orange', 4: 'tier-pink' };
         return { score, className: tierClasses[score] };
     }
 
-    const membersData = rawMembers.map(m => {
-        const uniqueCleanFlowers = [...new Set(m.flowers.map(f => {
-            const cf = cleanFormat(f);
-            if (!displayNameMap.has(cf)) {
-                displayNameMap.set(cf, f); 
-                flowerOwnersMap.set(cf, []);
-            }
-            return cf;
-        }))];
+    // Mapping danh sách người sở hữu hoa
+    const flowerOwnersMap = new Map();
+    const allKnownFlowers = new Set([...xuList, ...pinkList, ...orangeList, ...purpleList, ...greenList]);
+    allKnownFlowers.forEach(f => flowerOwnersMap.set(f, []));
 
-        const totalCount = uniqueCleanFlowers.filter(cf => getFlowerWeight(cf).score >= 2).length;
-        const memberObj = { name: m.name, allFlowers: uniqueCleanFlowers, totalCount };
-        uniqueCleanFlowers.forEach(cf => flowerOwnersMap.get(cf).push(memberObj));
+    const finalMembersData = membersDataProcessed.map(item => {
+        const totalCount = item.flowers.filter(f => (flowerTierMap.get(f) || 2) >= 2).length;
+        const memberObj = { name: item.name, allFlowers: item.flowers, totalCount };
+        
+        item.flowers.forEach(f => {
+            if (!flowerOwnersMap.has(f)) flowerOwnersMap.set(f, []);
+            flowerOwnersMap.get(f).push(memberObj);
+        });
 
         return memberObj;
     });
@@ -219,11 +225,11 @@
     const searchViewArea = document.getElementById('searchViewArea');
 
     function initRenderRankList() {
-        mainRankArea.innerHTML = `<div class="total-badge">🌱 Tổng số: ${membersData.length} thành viên</div>`;
+        mainRankArea.innerHTML = `<div class="total-badge">🌱 Tổng số: ${finalMembersData.length} thành viên</div>`;
         const container = document.createElement('div');
         container.className = "rank-list-container";
 
-        const sortedRank = [...membersData].sort((a, b) => b.totalCount - a.totalCount);
+        const sortedRank = [...finalMembersData].sort((a, b) => b.totalCount - a.totalCount);
         const rankColors = ["#ffb703", "#fb8500", "#219ebc", "#d6ccc2"];
 
         sortedRank.forEach((item, index) => {
@@ -233,13 +239,13 @@
             collapseItem.className = isBoy ? "cute-rank-item gentleman-card-style" : "cute-rank-item";
 
             const sortedFlowersWithTier = item.allFlowers.map(f => ({ name: f, ...getFlowerWeight(f) }))
-                .sort((a, b) => b.score - a.score || displayNameMap.get(a.name).localeCompare(displayNameMap.get(b.name), 'vi'));
+                .sort((a, b) => b.score - a.score || a.name.localeCompare(b.name, 'vi'));
 
             let tierCounts = { 4: 0, 3: 0, 2: 0, 1: 0 };
             
             const chipsHtml = sortedFlowersWithTier.map(f => {
                 tierCounts[f.score]++;
-                return `<span class="flower-chip-item ${f.className}">${displayNameMap.get(f.name)}</span>`;
+                return `<span class="flower-chip-item ${f.className}">${f.name}</span>`;
             }).join('');
             
             const summaryHtml = `<div class="summary-rarity-line">👑 <strong>Đội hình tính điểm (Tím trở lên):</strong> ${tierCounts[4]} Hồng | ${tierCounts[3]} Cam | ${tierCounts[2]} Tím</div>`;
@@ -266,44 +272,42 @@
     }
 
     function searchFlowerLogic() {
-        const fKey = cleanFormat(flowerInput.value);
-        if (fKey === "") {
+        const rawInput = flowerInput.value.trim();
+        if (rawInput === "") {
             searchViewArea.style.display = "none";
             defaultGardenWidgets.style.display = "flex";
             return;
         }
 
+        const fKey = rawInput.normalize('NFC').toLowerCase();
         defaultGardenWidgets.style.display = "none";
         searchViewArea.style.display = "block";
         
-        const sortedMatches = Array.from(displayNameMap.keys())
-            .filter(clean => clean.includes(fKey))
-            .sort((a, b) => displayNameMap.get(a).localeCompare(displayNameMap.get(b), 'vi'));
+        const sortedMatches = Array.from(flowerOwnersMap.keys())
+            .filter(name => name.toLowerCase().includes(fKey))
+            .sort((a, b) => a.localeCompare(b, 'vi'));
 
         if (!sortedMatches.length) {
-            searchResultArea.innerHTML = `<div class="single-flower-block flower-not-found">❌ Không tìm thấy loại hoa nào chứa từ khóa "${flowerInput.value}"</div>`;
+            searchResultArea.innerHTML = `<div class="single-flower-block flower-not-found">❌ Không tìm thấy loại hoa nào chứa từ khóa "${rawInput}"</div>`;
             return;
         }
 
-        searchResultArea.innerHTML = sortedMatches.map(cf => {
-            const owners = (flowerOwnersMap.get(cf) || [])
+        searchResultArea.innerHTML = sortedMatches.map(name => {
+            const owners = (flowerOwnersMap.get(name) || [])
                 .sort((a, b) => a.totalCount - b.totalCount)
                 .map(m => m.name);
 
-            const displayTitle = displayNameMap.get(cf);
-
             return owners.length 
-                ? `<div class="single-flower-block flower-found">🌸 <strong>${displayTitle}</strong> hiện có <strong>${owners.length}</strong> thành viên sở hữu (Xếp từ ít hoa nhất 👇):<br>👉 <em>${owners.join(', ')}</em></div>`
-                : `<div class="single-flower-block flower-empty">🌸 <strong>${displayTitle}</strong>: Hiện chưa có thành viên nào sở hữu.</div>`;
+                ? `<div class="single-flower-block flower-found">🌸 <strong>${name}</strong> hiện có <strong>${owners.length}</strong> thành viên sở hữu (Xếp từ ít hoa nhất 👇):<br>👉 <em>${owners.join(', ')}</em></div>`
+                : `<div class="single-flower-block flower-empty">🌸 <strong>${name}</strong>: Hiện chưa có thành viên nào sở hữu.</div>`;
         }).join('');
     }
 
     function updateMissingXu() {
-        const ownedCleanSet = new Set();
-        membersData.forEach(m => m.allFlowers.forEach(cf => ownedCleanSet.add(cf)));
+        const ownedSet = new Set();
+        finalMembersData.forEach(m => m.allFlowers.forEach(f => ownedSet.add(f)));
         
-        const uniqueMissing = rawXuList.filter(item => !ownedCleanSet.has(cleanFormat(item)))
-                                       .sort((a, b) => a.localeCompare(b, 'vi'));
+        const uniqueMissing = xuList.filter(f => !ownedSet.has(f)).sort((a, b) => a.localeCompare(b, 'vi'));
                                        
         missingArea.innerHTML = uniqueMissing.map(item => `<span class="xu-missing-badge">${item}</span>`).join('');
     }
