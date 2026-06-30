@@ -3,33 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌴 Queenss Garden - Summer Island 🐚</title>
+    <title>🌴 Queenss Island - Summer Sea 🐚</title>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght=400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ----- HỆ THỐNG BIẾN MÀU ĐẢO NHIỆT ĐỚI ----- */
         :root {
             --sea-main: #0077b6;
             --sea-dark: #023e8a;
-            --sand-main: #e9c46a;
-            --sand-light: #fefae0;
-            
             --text-dark: #1d3557;
             --text-gray: #457b9d;
-            
-            --boy-bg: #e0fbfc;
+            --boy-bg: rgba(224, 251, 252, 0.85);
             --boy-border: #48cae4;
             --boy-text: #0077b6;
-            
-            /* Kính trong suốt */
-            --glass-bg: rgba(255, 255, 255, 0.75);
-            --glass-border: rgba(255, 255, 255, 0.5);
+            /* Kính trong suốt (Glassmorphism) */
+            --glass-bg: rgba(255, 255, 255, 0.55);
+            --glass-border: rgba(255, 255, 255, 0.7);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Be Vietnam Pro', sans-serif; }
         
         body { 
-            /* Background dải màu Bầu trời -> Biển -> Cát */
-            background: linear-gradient(180deg, #90e0ef 0%, #00b4d8 35%, #0077b6 70%, #fefae0 100%);
+            /* Background dải màu Bầu trời -> Biển -> Cát (Đậm chất biển 200%) */
+            background: linear-gradient(180deg, #90e0ef 0%, #00b4d8 25%, #0077b6 65%, #e9c46a 100%);
             background-attachment: fixed;
             padding: 30px 20px; 
             display: flex; 
@@ -43,37 +38,33 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        @keyframes scaleUp {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
         @keyframes floating {
             0% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-8px) rotate(5deg); }
+            50% { transform: translateY(-12px) rotate(8deg); }
             100% { transform: translateY(0px) rotate(0deg); }
         }
 
-        /* ----- MAIN UI STYLES ----- */
+        /* ----- MAIN UI STYLES (GLASSMORPHISM) ----- */
         .garden-container { 
             width: 100%; max-width: 500px; 
             background: var(--glass-bg); 
-            backdrop-filter: blur(12px); /* Hiệu ứng kính mờ */
-            -webkit-backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             padding: 35px 25px; border-radius: 40px; 
-            box-shadow: 0 25px 45px rgba(2, 62, 138, 0.2); 
-            border: 3px solid var(--glass-border); 
+            box-shadow: 0 30px 60px rgba(2, 62, 138, 0.25); 
+            border: 2px solid var(--glass-border); 
             display: flex; flex-direction: column; position: relative; 
             animation: fadeInDown 0.6s ease-out;
         }
         
-        .decor-ribbon { position: absolute; top: -18px; font-size: 32px; animation: floating 3s ease-in-out infinite; cursor: pointer; }
-        .decor-ribbon.left { left: 20px; }
-        .decor-ribbon.right { right: 20px; animation-delay: 1.5s; }
+        /* Icon bồng bềnh */
+        .decor-float { position: absolute; top: -20px; font-size: 38px; animation: floating 3s ease-in-out infinite; cursor: pointer; text-shadow: 0 5px 10px rgba(0,0,0,0.2); }
+        .decor-float.left { left: 10px; }
+        .decor-float.right { right: 10px; animation-delay: 1.5s; top: -15px; }
         
         .search-box { 
             background: rgba(255, 255, 255, 0.85); 
-            border: 2px dashed #90e0ef; padding: 18px; border-radius: 28px; margin-bottom: 25px; 
+            border: 2px dashed #00b4d8; padding: 18px; border-radius: 28px; margin-bottom: 25px; 
             box-shadow: inset 0 4px 10px rgba(0, 119, 182, 0.05); 
         }
         .search-box-title { font-size: 13px; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--sea-dark); display: flex; align-items: center; gap: 6px; }
@@ -82,59 +73,58 @@
             border: 2px solid #caf0f8; outline: none; background: #fff; color: var(--text-dark); 
             transition: all 0.3s;
         }
-        .search-input:focus { border-color: var(--sea-main); box-shadow: 0 0 15px rgba(0, 180, 216, 0.3); }
+        .search-input:focus { border-color: var(--sea-main); box-shadow: 0 0 15px rgba(0, 180, 216, 0.4); }
 
         .btn-main { 
             width: 100%; padding: 16px 20px; font-size: 14.5px; font-weight: 700; border: none; 
             border-radius: 25px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; 
             user-select: none; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-        .btn-main:hover { transform: translateY(-4px); filter: brightness(1.1); }
+        .btn-main:hover { transform: translateY(-4px); filter: brightness(1.1); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
         .btn-main:active { transform: translateY(1px); }
         
-        .btn-help { color: #5c3d00; background: linear-gradient(135deg, #ffe066, #f4a261); box-shadow: 0 6px 15px rgba(244, 162, 97, 0.3); }
-        .btn-rank { color: #fff; background: linear-gradient(135deg, #00b4d8, #0077b6); box-shadow: 0 6px 15px rgba(0, 119, 182, 0.3); }
-        .btn-xu { color: #fff; background: linear-gradient(135deg, #2a9d8f, #264653); box-shadow: 0 6px 15px rgba(42, 157, 143, 0.3); }
+        .btn-help { color: #664100; background: linear-gradient(135deg, #ffe066, #f4a261); }
+        .btn-rank { color: #fff; background: linear-gradient(135deg, #00b4d8, #023e8a); }
+        .btn-xu { color: #fff; background: linear-gradient(135deg, #2a9d8f, #1d3557); }
 
         .info-box { 
             margin-top: 8px; padding: 20px; background: rgba(255, 255, 255, 0.95); 
-            border: 2px dashed #ade8f4; border-radius: 28px; display: none; 
-            animation: scaleUp 0.3s ease-out;
+            border: 2px dashed #00b4d8; border-radius: 28px; display: none; 
         }
         .help-content { color: var(--text-gray); font-size: 13.5px; line-height: 1.8; }
         .help-content p { margin-bottom: 6px; }
-        .help-content .help-title { margin-bottom: 12px; font-weight: 600; color: var(--sea-main); }
+        .help-content .help-title { margin-bottom: 12px; font-weight: 700; color: var(--sea-main); font-size: 15px;}
 
         /* ----- RANKING LIST STYLES ----- */
-        .total-badge { font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 14px; background: var(--sea-main); padding: 6px 14px; border-radius: 15px; display: inline-block; box-shadow: 0 4px 10px rgba(0, 119, 182, 0.2); }
+        .total-badge { font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 14px; background: var(--sea-main); padding: 6px 14px; border-radius: 15px; display: inline-block; box-shadow: 0 4px 10px rgba(0, 119, 182, 0.3); text-transform: uppercase;}
         .rank-list-container { display: flex; flex-direction: column; gap: 12px; width: 100%; }
         
-        .cute-rank-item { border: 1px solid #e0fbfc; border-radius: 20px; overflow: hidden; background: #fff; box-shadow: 0 4px 12px rgba(2, 62, 138, 0.05); transition: all 0.3s ease; }
-        .gentleman-card-style.cute-rank-item { border-color: var(--boy-border); background: #f8fdfd; }
+        .cute-rank-item { border: 1px solid rgba(255,255,255,0.9); border-radius: 20px; overflow: hidden; background: rgba(255,255,255,0.85); box-shadow: 0 4px 12px rgba(2, 62, 138, 0.08); transition: all 0.3s ease; }
+        .gentleman-card-style.cute-rank-item { border-color: var(--boy-border); background: var(--boy-bg); }
 
         .click-header-line { display: flex; justify-content: space-between; align-items: center; padding: 16px 18px; cursor: pointer; user-select: none; transition: background 0.3s; }
-        .click-header-line:hover { background: #f0fafd; }
+        .click-header-line:hover { background: rgba(255,255,255,1); }
         
         .active-folder .click-header-line { background: #e0fbfc !important; color: var(--sea-dark) !important; }
         .active-folder.gentleman-card-style .click-header-line { background: #caf0f8 !important; }
 
-        .header-left { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-dark); transition: color 0.3s; font-weight: 600; }
+        .header-left { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-dark); font-weight: 600; }
         .rank-number { font-weight: 800; width: 24px; text-align: center; }
 
-        .count-badge { font-weight: 700; padding: 5px 12px; border-radius: 20px; font-size: 11px; color: var(--sea-dark); background: #e0fbfc; border: 1px solid #90e0ef; }
-        .gentleman-card-style .count-badge { color: var(--boy-text); background: #caf0f8; border: 1px solid var(--boy-border); }
+        .count-badge { font-weight: 700; padding: 5px 12px; border-radius: 20px; font-size: 11px; color: #fff; background: var(--sea-main); box-shadow: 0 2px 5px rgba(0,0,0,0.1);}
+        .gentleman-card-style .count-badge { color: #fff; background: var(--sea-dark); }
 
-        .rank-content-box { display: none; padding: 18px; background: #fcfdfe; border-top: 1px solid #e0fbfc; animation: fadeInDown 0.3s ease-out; }
+        .rank-content-box { display: none; padding: 18px; background: rgba(255,255,255,0.95); border-top: 1px solid #e0fbfc; }
         .active-folder .rank-content-box { display: block !important; }
 
-        .summary-rarity-line { font-size: 12px; padding: 10px 14px; margin-bottom: 12px; border-radius: 12px; background: #f0fafd; border-left: 4.5px solid var(--sea-main); color: var(--text-dark); font-weight: 500; line-height: 1.5; }
+        .summary-rarity-line { font-size: 12px; padding: 10px 14px; margin-bottom: 12px; border-radius: 12px; background: #f0fafd; border-left: 5px solid var(--sea-main); color: var(--text-dark); font-weight: 500; line-height: 1.5; }
 
         .flower-chip-container { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
-        .flower-chip-item { display: inline-block; padding: 6px 12px; border-radius: 14px; font-size: 11.5px; margin: 3px; transition: transform 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
-        .flower-chip-item:hover { transform: scale(1.05) translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.08); }
+        .flower-chip-item { display: inline-block; padding: 6px 12px; border-radius: 14px; font-size: 11.5px; margin: 3px; transition: transform 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .flower-chip-item:hover { transform: scale(1.08) translateY(-2px); box-shadow: 0 5px 10px rgba(0,0,0,0.1); }
         
-        .xu-missing-badge { display: inline-block; padding: 6px 12px; border-radius: 14px; font-size: 11.5px; background: #fff; border: 1px solid #e76f51; color: #e76f51; font-weight: 500; margin: 3px; transition: transform 0.2s; }
-        .xu-missing-badge:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(231, 111, 81, 0.15); }
+        .xu-missing-badge { display: inline-block; padding: 6px 12px; border-radius: 14px; font-size: 11.5px; background: #fff; border: 1.5px solid #e76f51; color: #e76f51; font-weight: 600; margin: 3px; transition: transform 0.2s; }
+        .xu-missing-badge:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(231, 111, 81, 0.15); background: #fff5f3;}
 
         /* ----- TIERS PHẨM CHẤT HOA ----- */
         .tier-green { background: linear-gradient(135deg, #e8f5e9, #c8e6c9) !important; border: 1px solid #81c784 !important; color: #2e7d32 !important; font-weight: 500; }
@@ -144,19 +134,19 @@
 
         /* ----- SEARCH AREA ----- */
         .search-title { font-size: 13px; font-weight: 700; color: var(--sea-dark); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 4px; }
-        .single-flower-block { padding: 18px; border-radius: 24px; font-size: 13.5px; line-height: 1.6; margin-bottom: 14px; animation: fadeInDown 0.3s ease-out; }
-        .flower-found { border: 2.5px solid #90e0ef; background: #fff; color: var(--sea-dark); box-shadow: 0 6px 15px rgba(0, 119, 182, 0.1); }
-        .flower-empty { border: 2.5px dashed #ccc; background: rgba(255,255,255,0.6); color: #666; }
-        .flower-not-found { border: 2.5px dashed #ffb3c1; background: rgba(255,255,255,0.6); color: #c9184a; text-align: center; }
+        .single-flower-block { padding: 18px; border-radius: 24px; font-size: 13.5px; line-height: 1.6; margin-bottom: 14px; }
+        .flower-found { border: 2.5px solid #00b4d8; background: #fff; color: var(--sea-dark); box-shadow: 0 6px 15px rgba(0, 119, 182, 0.1); }
+        .flower-empty { border: 2.5px dashed #90e0ef; background: rgba(255,255,255,0.7); color: var(--sea-main); }
+        .flower-not-found { border: 2.5px dashed #e76f51; background: rgba(255,255,255,0.7); color: #e76f51; text-align: center; font-weight: 600;}
     </style>
 </head>
 <body>
 
 <div class="garden-container">
-    <span class="decor-ribbon left">🐠</span>
-    <span class="decor-ribbon right">⛵</span>
+    <span class="decor-float left">🐠</span>
+    <span class="decor-float right">⛵</span>
 
-    <h2 style="text-align: center; color: var(--sea-dark); margin-bottom: 20px; text-shadow: 1px 1px 2px rgba(255,255,255,0.8);">🌴 Đảo Hoa Nhiệt Đới 🐚</h2>
+    <h2 style="text-align: center; color: var(--sea-dark); margin-bottom: 20px; font-size: 24px; text-shadow: 2px 2px 4px rgba(255,255,255,0.8);">🌴 Đảo Hoa Nhiệt Đới 🐚</h2>
     
     <div class="search-box">
         <div class="search-box-title">🔍 Soi rạn san hô (Tìm hoa):</div>
@@ -170,7 +160,7 @@
                 <div id="helpBox" class="info-box">
                     <div class="help-content">
                         <p class="help-title">Aloha! Chào mừng tới Đảo Hoa Mùa Hè 🏝️</p>
-                        <p>🐚 <strong>Tìm ai có hoa gì:</strong> Gõ tên hoa vào ô tìm kiếm ở trên để xem thủy thủ nào đang sở hữu nhé.</p>
+                        <p>🐚 <strong>Soi san hô:</strong> Gõ tên hoa vào ô tìm kiếm ở trên để xem thủy thủ nào đang sở hữu nhé.</p>
                         <p>🏄‍♀️ <strong>Bảng xếp hạng lướt sóng:</strong> Bấm nút màu xanh dương để xem độ giàu có của từng người (tính từ phẩm tím trở lên).</p>
                         <p>🦀 <strong>Nhặt hoa xu trên cát:</strong> Bấm nút xanh ngọc để xem danh sách các loài hoa xu mà cả hội chưa ai vớt được.</p>
                     </div>
@@ -204,11 +194,9 @@
     const standardizeName = str => {
         if (!str) return '';
         let s = str.normalize('NFC').trim().toLowerCase();
-        
         s = s.replace(/oà/g, 'òa').replace(/oá/g, 'óa').replace(/oả/g, 'ỏa').replace(/oã/g, 'õa').replace(/oạ/g, 'ọa')
              .replace(/oè/g, 'òe').replace(/oé/g, 'óe').replace(/oẻ/g, 'ỏe').replace(/oẽ/g, 'õe').replace(/oẹ/g, 'ọe')
              .replace(/([^q]|^)uý/g, '$1úy').replace(/([^q]|^)uỳ/g, '$1ùy').replace(/([^q]|^)uỷ/g, '$1ủy').replace(/([^q]|^)uỹ/g, '$1ũy').replace(/([^q]|^)uỵ/g, '$1ụy');
-
         return s.charAt(0).toUpperCase() + s.slice(1);
     };
 
@@ -308,6 +296,7 @@
         sortedRank.forEach((item, index) => {
             const collapseItem = document.createElement('div');
             
+            // Đảm bảo chỉ có 2 người này là nam (nhận icon mũ 🎩)
             const isBoy = item.name === "Cá chiên (Anh Kiệt)" || item.name === "ChồgcủaHạDi (Quốc Toàn)";
             collapseItem.className = isBoy ? "cute-rank-item gentleman-card-style" : "cute-rank-item";
 
@@ -321,7 +310,7 @@
             }).join('');
             
             const summaryHtml = `<div class="summary-rarity-line">🌊 <strong>Kho báu:</strong> ${tierCounts[4]} Hồng | ${tierCounts[3]} Cam | ${tierCounts[2]} Tím</div>`;
-            const numColor = index < 3 ? rankColors[index] : "#264653";
+            const numColor = index < 3 ? rankColors[index] : "#1d3557";
 
             collapseItem.innerHTML = `
                 <div class="click-header-line">
@@ -337,7 +326,7 @@
                 </div>
             `;
 
-            // Đảm bảo tên Đạo Chích (Trúc Linh) hiển thị nguyên vẹn 100%
+            // Dùng textContent bảo đảm không bị mất dấu ngoặc () của Đạo Chích (Trúc Linh)
             collapseItem.querySelector('.member-display-name').textContent = (isBoy ? '🎩 ' : '👑 ') + item.name;
 
             collapseItem.querySelector('.click-header-line').addEventListener('click', () => collapseItem.classList.toggle('active-folder'));
