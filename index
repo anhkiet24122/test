@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌴 Queenss Island - Summer Sea 🐚</title>
+    <title>🌴 Bảng hoa Queens - Hè là phải đi biển 🐚</title>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght=400;500;600;700&display=swap" rel="stylesheet">
     <style>
         /* ----- HỆ THỐNG BIẾN MÀU ĐẢO NHIỆT ĐỚI ----- */
@@ -146,36 +146,36 @@
     <span class="decor-float left">🐠</span>
     <span class="decor-float right">⛵</span>
 
-    <h2 style="text-align: center; color: var(--sea-dark); margin-bottom: 20px; font-size: 24px; text-shadow: 2px 2px 4px rgba(255,255,255,0.8);">🌴 Đảo Hoa Nhiệt Đới 🐚</h2>
+    <h2 style="text-align: center; color: var(--sea-dark); margin-bottom: 20px; font-size: 24px; text-shadow: 2px 2px 4px rgba(255,255,255,0.8);">🌴 Bảng hoa Queens - Hè là phải đi biển 🐚</h2>
     
     <div class="search-box">
-        <div class="search-box-title">🔍 Soi rạn san hô (Tìm hoa):</div>
+        <div class="search-box-title">🔍 Tìm hoa ở bãi biển:</div>
         <input type="text" id="flowerSearch" class="search-input" placeholder="Nhập tên loài hoa bạn muốn tìm...">
     </div>
     
     <div style="flex-grow: 1;">
         <div id="defaultGardenWidgets" style="display: flex; flex-direction: column; gap: 18px;">
             <div>
-                <button id="btnHelp" class="btn-main btn-help">🗺️ Bản đồ khám phá đảo hoa</button>
+                <button id="btnHelp" class="btn-main btn-help">🗺️ Hướng dẫn khám phá các loại hoa</button>
                 <div id="helpBox" class="info-box">
                     <div class="help-content">
                         <p class="help-title">Aloha! Chào mừng tới Đảo Hoa Mùa Hè 🏝️</p>
-                        <p>🐚 <strong>Soi san hô:</strong> Gõ tên hoa vào ô tìm kiếm ở trên để xem thủy thủ nào đang sở hữu nhé.</p>
-                        <p>🏄‍♀️ <strong>Bảng xếp hạng lướt sóng:</strong> Bấm nút màu xanh dương để xem độ giàu có của từng người (tính từ phẩm tím trở lên).</p>
-                        <p>🦀 <strong>Nhặt hoa xu trên cát:</strong> Bấm nút xanh ngọc để xem danh sách các loài hoa xu mà cả hội chưa ai vớt được.</p>
+                        <p>🐚 <strong>Tìm hoa ở bãi biển:</strong> Gõ tên hoa vào ô tìm kiếm ở trên để xem thủy thủ nào đang sở hữu nhé.</p>
+                        <p>🏄‍♀️ <strong>Bảng xếp hạng hoa các thành viên:</strong> Bấm nút màu xanh dương để xem độ giàu có của từng người (tính từ phẩm tím trở lên).</p>
+                        <p>🦀 <strong>Các loại hoa xu chưa nhặt trên bờ cát:</strong> Bấm nút xanh ngọc để xem danh sách các loài hoa xu mà cả hội chưa ai vớt được.</p>
                     </div>
                 </div>
             </div>
 
             <div>
-                <button id="btnRank" class="btn-main btn-rank">🏄‍♀️ Bảng xếp hạng lướt sóng</button>
+                <button id="btnRank" class="btn-main btn-rank">🏄‍♀️ Bảng xếp hạng hoa các thành viên</button>
                 <div id="rankBox" class="info-box">
                     <div id="mainRankArea"></div>
                 </div>
             </div>
 
             <div>
-                <button id="btnXu" class="btn-main btn-xu">🦀 Nhặt hoa xu trên cát</button>
+                <button id="btnXu" class="btn-main btn-xu">🦀 Các loại hoa xu chưa nhặt trên bờ cát</button>
                 <div id="missingBox" class="info-box">
                     <div id="missingArea" style="display: flex; flex-wrap: wrap; gap: 6px;"></div>
                 </div>
@@ -286,7 +286,7 @@
     const searchViewArea = document.getElementById('searchViewArea');
 
     function initRenderRankList() {
-        mainRankArea.innerHTML = `<div class="total-badge">⚓ Tổng số: ${finalMembersData.length} thủy thủ</div>`;
+        mainRankArea.innerHTML = `<div class="total-badge">⚓ Tổng số: ${finalMembersData.length} thành viên</div>`;
         const container = document.createElement('div');
         container.className = "rank-list-container";
 
@@ -296,7 +296,6 @@
         sortedRank.forEach((item, index) => {
             const collapseItem = document.createElement('div');
             
-            // Đảm bảo chỉ có 2 người này là nam (nhận icon mũ 🎩)
             const isBoy = item.name === "Cá chiên (Anh Kiệt)" || item.name === "ChồgcủaHạDi (Quốc Toàn)";
             collapseItem.className = isBoy ? "cute-rank-item gentleman-card-style" : "cute-rank-item";
 
@@ -364,7 +363,7 @@
                 .map(m => m.name);
 
             return owners.length 
-                ? `<div class="single-flower-block flower-found">🌸 <strong>${name}</strong> có <strong>${owners.length}</strong> thủy thủ vớt được (Xếp từ ít hoa nhất 👇):<br>👉 <em>${owners.join(', ')}</em></div>`
+                ? `<div class="single-flower-block flower-found">🌸 <strong>${name}</strong> có <strong>${owners.length}</strong> thành viên vớt được (Xếp từ ít hoa nhất 👇):<br>👉 <em>${owners.join(', ')}</em></div>`
                 : `<div class="single-flower-block flower-empty">🌸 <strong>${name}</strong>: Cả đảo chưa ai vớt được.</div>`;
         }).join('');
     }
