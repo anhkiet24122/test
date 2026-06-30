@@ -3,42 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌊 Queenss Garden - Summer Sea 🏝️</title>
+    <title>🌴 Queenss Garden - Summer Island 🐚</title>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght=400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ----- HỆ THỐNG BIẾN MÀU ĐẠI DƯƠNG MÙA HÈ ----- */
+        /* ----- HỆ THỐNG BIẾN MÀU ĐẢO NHIỆT ĐỚI ----- */
         :root {
-            --sea-bg: #e0f2fe; /* Màu nước biển nông trong vắt */
-            --sea-dot: #bae6fd; /* Bọt sóng biển nhạt */
-            --sea-border: #4ea8de; /* Màu xanh sóng dương */
-            --sea-main: #0077b6; /* Xanh đại dương thanh mát */
-            --sea-dark: #03045e; /* Xanh lục địa sâu thẳm */
+            --sea-main: #0077b6;
+            --sea-dark: #023e8a;
+            --sand-main: #e9c46a;
+            --sand-light: #fefae0;
             
-            --text-dark: #1c2541;
-            --text-gray: #475569;
+            --text-dark: #1d3557;
+            --text-gray: #457b9d;
             
-            --boy-bg: #e0f2fe;
-            --boy-border: #74c69d;
-            --boy-text: #03045e;
+            --boy-bg: #e0fbfc;
+            --boy-border: #48cae4;
+            --boy-text: #0077b6;
             
-            --box-bg: rgba(255, 255, 255, 0.97);
+            /* Kính trong suốt */
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(255, 255, 255, 0.5);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Be Vietnam Pro', sans-serif; }
         
         body { 
-            background: var(--sea-bg); 
-            background-image: radial-gradient(var(--sea-dot) 1.5px, transparent 1.5px);
-            background-size: 20px 20px;
+            /* Background dải màu Bầu trời -> Biển -> Cát */
+            background: linear-gradient(180deg, #90e0ef 0%, #00b4d8 35%, #0077b6 70%, #fefae0 100%);
+            background-attachment: fixed;
             padding: 30px 20px; 
             display: flex; 
             justify-content: center; 
             min-height: 100vh; 
         }
 
-        /* ----- HIỆU ỨNG CHUYỂN ĐỘNG MƯỢT MÀ ----- */
+        /* ----- HIỆU ỨNG CHUYỂN ĐỘNG ----- */
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-10px); }
+            from { opacity: 0; transform: translateY(-15px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
@@ -47,137 +48,144 @@
             to { opacity: 1; transform: scale(1); }
         }
 
+        @keyframes floating {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-8px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
         /* ----- MAIN UI STYLES ----- */
         .garden-container { 
             width: 100%; max-width: 500px; 
-            background: var(--box-bg); 
+            background: var(--glass-bg); 
+            backdrop-filter: blur(12px); /* Hiệu ứng kính mờ */
+            -webkit-backdrop-filter: blur(12px);
             padding: 35px 25px; border-radius: 40px; 
-            box-shadow: 0 20px 45px rgba(0, 119, 182, 0.15); 
-            border: 5px double var(--sea-border); 
+            box-shadow: 0 25px 45px rgba(2, 62, 138, 0.2); 
+            border: 3px solid var(--glass-border); 
             display: flex; flex-direction: column; position: relative; 
             animation: fadeInDown 0.6s ease-out;
         }
         
-        .decor-ribbon { position: absolute; top: -16px; font-size: 24px; transition: transform 0.3s; }
-        .decor-ribbon:hover { transform: scale(1.2) rotate(10deg); }
-        .decor-ribbon.left { left: 30px; }
-        .decor-ribbon.right { right: 30px; }
+        .decor-ribbon { position: absolute; top: -18px; font-size: 32px; animation: floating 3s ease-in-out infinite; cursor: pointer; }
+        .decor-ribbon.left { left: 20px; }
+        .decor-ribbon.right { right: 20px; animation-delay: 1.5s; }
         
         .search-box { 
-            background: linear-gradient(135deg, #f0fafd, var(--sea-bg)); 
-            border: 2.5px dashed var(--sea-border); padding: 18px; border-radius: 28px; margin-bottom: 25px; 
-            box-shadow: inset 0 4px 10px rgba(0, 119, 182, 0.03); 
+            background: rgba(255, 255, 255, 0.85); 
+            border: 2px dashed #90e0ef; padding: 18px; border-radius: 28px; margin-bottom: 25px; 
+            box-shadow: inset 0 4px 10px rgba(0, 119, 182, 0.05); 
         }
-        .search-box-title { font-size: 12px; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--sea-dark); display: flex; align-items: center; gap: 6px; }
+        .search-box-title { font-size: 13px; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--sea-dark); display: flex; align-items: center; gap: 6px; }
         .search-input { 
             width: 100%; padding: 14px 18px; font-size: 14px; border-radius: 20px; 
-            border: 2px solid var(--sea-dot); outline: none; background: #fff; color: var(--text-dark); 
-            transition: border-color 0.3s, box-shadow 0.3s;
+            border: 2px solid #caf0f8; outline: none; background: #fff; color: var(--text-dark); 
+            transition: all 0.3s;
         }
-        .search-input:focus { border-color: var(--sea-main); box-shadow: 0 0 10px rgba(0, 119, 182, 0.2); }
+        .search-input:focus { border-color: var(--sea-main); box-shadow: 0 0 15px rgba(0, 180, 216, 0.3); }
 
         .btn-main { 
-            width: 100%; padding: 16px 20px; font-size: 14px; font-weight: 700; border: none; 
+            width: 100%; padding: 16px 20px; font-size: 14.5px; font-weight: 700; border: none; 
             border-radius: 25px; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; 
             user-select: none; transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
-        .btn-main:hover { transform: translateY(-3px); filter: brightness(1.05); }
+        .btn-main:hover { transform: translateY(-4px); filter: brightness(1.1); }
         .btn-main:active { transform: translateY(1px); }
         
-        .btn-help { color: #5c3d00; background: linear-gradient(135deg, #ffe082, #ffb300); box-shadow: 0 6px 15px rgba(255, 179, 0, 0.25); }
-        .btn-rank { color: #fff; background: linear-gradient(135deg, #4ea8de, var(--sea-main)); box-shadow: 0 6px 15px rgba(0, 119, 182, 0.3); }
-        .btn-xu { color: #fff; background: linear-gradient(135deg, #52b788, #2d6a4f); box-shadow: 0 6px 15px rgba(45, 106, 79, 0.25); }
+        .btn-help { color: #5c3d00; background: linear-gradient(135deg, #ffe066, #f4a261); box-shadow: 0 6px 15px rgba(244, 162, 97, 0.3); }
+        .btn-rank { color: #fff; background: linear-gradient(135deg, #00b4d8, #0077b6); box-shadow: 0 6px 15px rgba(0, 119, 182, 0.3); }
+        .btn-xu { color: #fff; background: linear-gradient(135deg, #2a9d8f, #264653); box-shadow: 0 6px 15px rgba(42, 157, 143, 0.3); }
 
         .info-box { 
-            margin-top: 8px; padding: 20px; background: rgba(252, 254, 255, 0.98); 
-            border: 2px dashed var(--sea-dot); border-radius: 28px; display: none; 
+            margin-top: 8px; padding: 20px; background: rgba(255, 255, 255, 0.95); 
+            border: 2px dashed #ade8f4; border-radius: 28px; display: none; 
             animation: scaleUp 0.3s ease-out;
         }
-        .help-content { color: var(--text-gray); font-size: 13px; line-height: 1.8; }
-        .help-content p { margin-bottom: 4px; }
-        .help-content .help-title { margin-bottom: 10px; font-weight: 500; color: var(--sea-main); }
+        .help-content { color: var(--text-gray); font-size: 13.5px; line-height: 1.8; }
+        .help-content p { margin-bottom: 6px; }
+        .help-content .help-title { margin-bottom: 12px; font-weight: 600; color: var(--sea-main); }
 
         /* ----- RANKING LIST STYLES ----- */
-        .total-badge { font-size: 12px; font-weight: 700; color: #0077b6; margin-bottom: 14px; background: #e0f2fe; padding: 6px 14px; border-radius: 12px; display: inline-block; border: 1px solid #bae6fd; }
+        .total-badge { font-size: 12px; font-weight: 700; color: #fff; margin-bottom: 14px; background: var(--sea-main); padding: 6px 14px; border-radius: 15px; display: inline-block; box-shadow: 0 4px 10px rgba(0, 119, 182, 0.2); }
         .rank-list-container { display: flex; flex-direction: column; gap: 12px; width: 100%; }
         
-        .cute-rank-item { border: 1px solid #e2f1f7; border-radius: 20px; overflow: hidden; background: #fff; box-shadow: 0 4px 10px rgba(0, 119, 182, 0.04); transition: all 0.3s ease; }
-        .gentleman-card-style.cute-rank-item { border-color: #a8dadc; box-shadow: 0 4px 10px rgba(3, 4, 94, 0.04); }
+        .cute-rank-item { border: 1px solid #e0fbfc; border-radius: 20px; overflow: hidden; background: #fff; box-shadow: 0 4px 12px rgba(2, 62, 138, 0.05); transition: all 0.3s ease; }
+        .gentleman-card-style.cute-rank-item { border-color: var(--boy-border); background: #f8fdfd; }
 
-        .click-header-line { display: flex; justify-content: space-between; align-items: center; padding: 15px 18px; cursor: pointer; user-select: none; transition: background 0.3s; }
-        .click-header-line:hover { background: #f7fcfe; }
+        .click-header-line { display: flex; justify-content: space-between; align-items: center; padding: 16px 18px; cursor: pointer; user-select: none; transition: background 0.3s; }
+        .click-header-line:hover { background: #f0fafd; }
         
-        .active-folder .click-header-line { background: #f0fafd !important; color: var(--sea-main) !important; }
-        .active-folder.gentleman-card-style .click-header-line { background: #edf6f9 !important; color: var(--sea-dark) !important; }
+        .active-folder .click-header-line { background: #e0fbfc !important; color: var(--sea-dark) !important; }
+        .active-folder.gentleman-card-style .click-header-line { background: #caf0f8 !important; }
 
-        .header-left { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--text-dark); transition: color 0.3s; font-weight: 500; }
-        .rank-number { font-weight: 700; width: 24px; text-align: center; }
+        .header-left { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--text-dark); transition: color 0.3s; font-weight: 600; }
+        .rank-number { font-weight: 800; width: 24px; text-align: center; }
 
-        .count-badge { font-weight: 700; padding: 5px 12px; border-radius: 20px; font-size: 11px; color: var(--sea-main); background: #f0fafd; border: 1px solid var(--sea-dot); transition: all 0.3s; }
-        .gentleman-card-style .count-badge { color: #2d6a4f; background: #e8f5e9; border: 1px solid #c8e6c9; }
+        .count-badge { font-weight: 700; padding: 5px 12px; border-radius: 20px; font-size: 11px; color: var(--sea-dark); background: #e0fbfc; border: 1px solid #90e0ef; }
+        .gentleman-card-style .count-badge { color: var(--boy-text); background: #caf0f8; border: 1px solid var(--boy-border); }
 
-        .rank-content-box { display: none; padding: 18px; background: #fffdfd; border-top: 1px solid #f0fafd; animation: fadeInDown 0.3s ease-out; }
+        .rank-content-box { display: none; padding: 18px; background: #fcfdfe; border-top: 1px solid #e0fbfc; animation: fadeInDown 0.3s ease-out; }
         .active-folder .rank-content-box { display: block !important; }
 
-        .summary-rarity-line { font-size: 12px; padding: 8px 12px; margin-bottom: 12px; border-radius: 12px; background: #f0fafd; border-left: 4px solid var(--sea-main); color: var(--text-dark); font-weight: 500; line-height: 1.5; }
+        .summary-rarity-line { font-size: 12px; padding: 10px 14px; margin-bottom: 12px; border-radius: 12px; background: #f0fafd; border-left: 4.5px solid var(--sea-main); color: var(--text-dark); font-weight: 500; line-height: 1.5; }
 
-        .flower-chip-container { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
-        .flower-chip-item { display: inline-block; padding: 6px 12px; border-radius: 14px; font-size: 11.5px; margin: 3px; transition: transform 0.2s; }
-        .flower-chip-item:hover { transform: scale(1.05); }
+        .flower-chip-container { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 8px; }
+        .flower-chip-item { display: inline-block; padding: 6px 12px; border-radius: 14px; font-size: 11.5px; margin: 3px; transition: transform 0.2s; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+        .flower-chip-item:hover { transform: scale(1.05) translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.08); }
         
-        .xu-missing-badge { display: inline-block; padding: 6px 12px; border-radius: 14px; font-size: 11.5px; background: #fff; border: 1px solid var(--sea-dot); color: var(--sea-dark); font-weight: 500; margin: 3px; transition: transform 0.2s; }
-        .xu-missing-badge:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0, 119, 182, 0.1); }
+        .xu-missing-badge { display: inline-block; padding: 6px 12px; border-radius: 14px; font-size: 11.5px; background: #fff; border: 1px solid #e76f51; color: #e76f51; font-weight: 500; margin: 3px; transition: transform 0.2s; }
+        .xu-missing-badge:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(231, 111, 81, 0.15); }
 
         /* ----- TIERS PHẨM CHẤT HOA ----- */
-        .tier-green { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9) !important; border: 1px solid #a8dadc !important; color: #2e7d32 !important; font-weight: 500; }
-        .tier-purple { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7) !important; border: 1px solid #d1c4e9 !important; color: #6a1b9a !important; font-weight: 500; }
-        .tier-orange { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2) !important; border: 1.5px solid #ffa726 !important; color: #e65100 !important; font-weight: 600 !important; }
-        .tier-pink { background: linear-gradient(135deg, #ffe0e6 0%, #ffb3c1) !important; border: 2px solid #ff4d6d !important; color: #c9184a !important; font-weight: 700 !important; box-shadow: 0 2px 6px rgba(255, 77, 109, 0.15) !important; }
+        .tier-green { background: linear-gradient(135deg, #e8f5e9, #c8e6c9) !important; border: 1px solid #81c784 !important; color: #2e7d32 !important; font-weight: 500; }
+        .tier-purple { background: linear-gradient(135deg, #f3e5f5, #e1bee7) !important; border: 1px solid #ba68c8 !important; color: #6a1b9a !important; font-weight: 500; }
+        .tier-orange { background: linear-gradient(135deg, #fff3e0, #ffe0b2) !important; border: 1px solid #ffb74d !important; color: #e65100 !important; font-weight: 600 !important; }
+        .tier-pink { background: linear-gradient(135deg, #ffe0e6, #ffb3c1) !important; border: 1.5px solid #ff4d6d !important; color: #c9184a !important; font-weight: 700 !important; box-shadow: 0 2px 6px rgba(255, 77, 109, 0.15) !important; }
 
         /* ----- SEARCH AREA ----- */
-        .search-title { font-size: 13px; font-weight: 700; color: var(--text-gray); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 4px; }
+        .search-title { font-size: 13px; font-weight: 700; color: var(--sea-dark); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 4px; }
         .single-flower-block { padding: 18px; border-radius: 24px; font-size: 13.5px; line-height: 1.6; margin-bottom: 14px; animation: fadeInDown 0.3s ease-out; }
-        .flower-found { border: 2.5px solid var(--sea-dot); background: #f0fafd; color: var(--sea-dark); box-shadow: 0 6px 15px rgba(0,119,182,0.06); }
-        .flower-empty { border: 2.5px solid #dee2e6; background: #fafafa; color: #888; }
-        .flower-not-found { border: 2.5px solid #dee2e6; background: #fafafa; color: #999; text-align: center; }
+        .flower-found { border: 2.5px solid #90e0ef; background: #fff; color: var(--sea-dark); box-shadow: 0 6px 15px rgba(0, 119, 182, 0.1); }
+        .flower-empty { border: 2.5px dashed #ccc; background: rgba(255,255,255,0.6); color: #666; }
+        .flower-not-found { border: 2.5px dashed #ffb3c1; background: rgba(255,255,255,0.6); color: #c9184a; text-align: center; }
     </style>
 </head>
 <body>
 
 <div class="garden-container">
-    <span class="decor-ribbon left">🌊</span>
-    <span class="decor-ribbon right">🌊</span>
+    <span class="decor-ribbon left">🐠</span>
+    <span class="decor-ribbon right">⛵</span>
 
-    <h2 style="text-align: center; color: var(--sea-main); margin-bottom: 20px;">🌊 Queenss Garden 🏝️</h2>
+    <h2 style="text-align: center; color: var(--sea-dark); margin-bottom: 20px; text-shadow: 1px 1px 2px rgba(255,255,255,0.8);">🌴 Đảo Hoa Nhiệt Đới 🐚</h2>
     
     <div class="search-box">
-        <div class="search-box-title">🌱 Tìm theo tên hoa:</div>
-        <input type="text" id="flowerSearch" class="search-input" placeholder="Nhập tên hoa muốn tra cứu...">
+        <div class="search-box-title">🔍 Soi rạn san hô (Tìm hoa):</div>
+        <input type="text" id="flowerSearch" class="search-input" placeholder="Nhập tên loài hoa bạn muốn tìm...">
     </div>
     
     <div style="flex-grow: 1;">
         <div id="defaultGardenWidgets" style="display: flex; flex-direction: column; gap: 18px;">
             <div>
-                <button id="btnHelp" class="btn-main btn-help">📖 Hướng dẫn sử dụng vườn hoa</button>
+                <button id="btnHelp" class="btn-main btn-help">🗺️ Bản đồ khám phá đảo hoa</button>
                 <div id="helpBox" class="info-box">
                     <div class="help-content">
-                        <p class="help-title">Chào mừng các nàng và các chàng đến với mảnh vườn <strong>Queenss Garden</strong>!</p>
-                        <p>🌊 <strong>Tìm ai có hoa gì:</strong> Gõ từ khóa tên hoa vào ô tìm kiếm ở trên.</p>
-                        <p>🌊 <strong>Xem bảng xếp hạng:</strong> Bấm nút màu hồng bên dưới (chỉ tính từ phẩm tím trở lên).</p>
-                        <p>🌊 <strong>Kiểm tra hoa xu:</strong> Bấm nút xanh lục để biết loài hoa nào cả hội đang thiếu.</p>
+                        <p class="help-title">Aloha! Chào mừng tới Đảo Hoa Mùa Hè 🏝️</p>
+                        <p>🐚 <strong>Tìm ai có hoa gì:</strong> Gõ tên hoa vào ô tìm kiếm ở trên để xem thủy thủ nào đang sở hữu nhé.</p>
+                        <p>🏄‍♀️ <strong>Bảng xếp hạng lướt sóng:</strong> Bấm nút màu xanh dương để xem độ giàu có của từng người (tính từ phẩm tím trở lên).</p>
+                        <p>🦀 <strong>Nhặt hoa xu trên cát:</strong> Bấm nút xanh ngọc để xem danh sách các loài hoa xu mà cả hội chưa ai vớt được.</p>
                     </div>
                 </div>
             </div>
 
             <div>
-                <button id="btnRank" class="btn-main btn-rank">🏆 Xem bảng xếp hạng</button>
+                <button id="btnRank" class="btn-main btn-rank">🏄‍♀️ Bảng xếp hạng lướt sóng</button>
                 <div id="rankBox" class="info-box">
                     <div id="mainRankArea"></div>
                 </div>
             </div>
 
             <div>
-                <button id="btnXu" class="btn-main btn-xu">✨ Xem các loại hoa xu chưa có</button>
+                <button id="btnXu" class="btn-main btn-xu">🦀 Nhặt hoa xu trên cát</button>
                 <div id="missingBox" class="info-box">
                     <div id="missingArea" style="display: flex; flex-wrap: wrap; gap: 6px;"></div>
                 </div>
@@ -185,7 +193,7 @@
         </div>
         
         <div id="searchViewArea" style="display: none;">
-            <div class="search-title">📋 Kết quả tìm kiếm:</div>
+            <div class="search-title">🪸 Lưới thu hoạch:</div>
             <div id="searchResultArea"></div>
         </div>
     </div>
@@ -290,12 +298,12 @@
     const searchViewArea = document.getElementById('searchViewArea');
 
     function initRenderRankList() {
-        mainRankArea.innerHTML = `<div class="total-badge">🌱 Tổng số: ${finalMembersData.length} thành viên</div>`;
+        mainRankArea.innerHTML = `<div class="total-badge">⚓ Tổng số: ${finalMembersData.length} thủy thủ</div>`;
         const container = document.createElement('div');
         container.className = "rank-list-container";
 
         const sortedRank = [...finalMembersData].sort((a, b) => b.totalCount - a.totalCount);
-        const rankColors = ["#0077b6", "#0096c7", "#00b4d8", "#90e0ef"];
+        const rankColors = ["#e76f51", "#f4a261", "#e9c46a", "#2a9d8f"];
 
         sortedRank.forEach((item, index) => {
             const collapseItem = document.createElement('div');
@@ -312,8 +320,8 @@
                 return `<span class="flower-chip-item ${f.className}">${f.name}</span>`;
             }).join('');
             
-            const summaryHtml = `<div class="summary-rarity-line">🌊 <strong>Đội hình tính điểm:</strong> ${tierCounts[4]} Hồng | ${tierCounts[3]} Cam | ${tierCounts[2]} Tím</div>`;
-            const numColor = index < 3 ? rankColors[index] : "#64748b";
+            const summaryHtml = `<div class="summary-rarity-line">🌊 <strong>Kho báu:</strong> ${tierCounts[4]} Hồng | ${tierCounts[3]} Cam | ${tierCounts[2]} Tím</div>`;
+            const numColor = index < 3 ? rankColors[index] : "#264653";
 
             collapseItem.innerHTML = `
                 <div class="click-header-line">
@@ -329,7 +337,7 @@
                 </div>
             `;
 
-            // Gán trực tiếp qua textContent để giữ nguyên dấu ngoặc () của Đạo Chích (Trúc Linh)
+            // Đảm bảo tên Đạo Chích (Trúc Linh) hiển thị nguyên vẹn 100%
             collapseItem.querySelector('.member-display-name').textContent = (isBoy ? '🎩 ' : '👑 ') + item.name;
 
             collapseItem.querySelector('.click-header-line').addEventListener('click', () => collapseItem.classList.toggle('active-folder'));
@@ -357,7 +365,7 @@
             .sort((a, b) => a.localeCompare(b, 'vi'));
 
         if (!sortedMatches.length) {
-            searchResultArea.innerHTML = `<div class="single-flower-block flower-not-found">❌ Không tìm thấy loại hoa nào chứa từ khóa "${rawInput}"</div>`;
+            searchResultArea.innerHTML = `<div class="single-flower-block flower-not-found">❌ Rạn san hô này chưa có loài hoa "${rawInput}"</div>`;
             return;
         }
 
@@ -367,8 +375,8 @@
                 .map(m => m.name);
 
             return owners.length 
-                ? `<div class="single-flower-block flower-found">🌸 <strong>${name}</strong> hiện có <strong>${owners.length}</strong> thành viên sở hữu (Xếp từ ít hoa nhất 👇):<br>👉 <em>${owners.join(', ')}</em></div>`
-                : `<div class="single-flower-block flower-empty">🌸 <strong>${name}</strong>: Hiện chưa có thành viên nào sở hữu.</div>`;
+                ? `<div class="single-flower-block flower-found">🌸 <strong>${name}</strong> có <strong>${owners.length}</strong> thủy thủ vớt được (Xếp từ ít hoa nhất 👇):<br>👉 <em>${owners.join(', ')}</em></div>`
+                : `<div class="single-flower-block flower-empty">🌸 <strong>${name}</strong>: Cả đảo chưa ai vớt được.</div>`;
         }).join('');
     }
 
