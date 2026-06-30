@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌸 Queenss Garden 👑</title>
+    <title>🌊 Queenss Garden - Summer Sea 🏝️</title>
     <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght=400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        /* ----- HỆ THỐNG BIẾN MÀU THÔNG MINH ----- */
+        /* ----- HỆ THỐNG BIẾN MÀU ĐẠI DƯƠNG MÙA HÈ ----- */
         :root {
-            --pink-light: #fff0f3;
-            --pink-dot: #ffccd5;
-            --pink-border: #ffb3c1;
-            --pink-main: #ff4d6d;
-            --pink-dark: #c9184a;
+            --sea-bg: #e0f2fe; /* Màu nước biển nông trong vắt */
+            --sea-dot: #bae6fd; /* Bọt sóng biển nhạt */
+            --sea-border: #4ea8de; /* Màu xanh sóng dương */
+            --sea-main: #0077b6; /* Xanh đại dương thanh mát */
+            --sea-dark: #03045e; /* Xanh lục địa sâu thẳm */
             
-            --text-dark: #4a4a4a;
-            --text-gray: #5c677d;
+            --text-dark: #1c2541;
+            --text-gray: #475569;
             
             --boy-bg: #e0f2fe;
-            --boy-border: #bae6fd;
-            --boy-text: #003049;
+            --boy-border: #74c69d;
+            --boy-text: #03045e;
             
-            --box-bg: rgba(255, 255, 255, 0.98);
+            --box-bg: rgba(255, 255, 255, 0.97);
         }
 
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Be Vietnam Pro', sans-serif; }
         
         body { 
-            background: var(--pink-light); 
-            background-image: radial-gradient(var(--pink-dot) 1.5px, transparent 1.5px);
+            background: var(--sea-bg); 
+            background-image: radial-gradient(var(--sea-dot) 1.5px, transparent 1.5px);
             background-size: 20px 20px;
             padding: 30px 20px; 
             display: flex; 
@@ -36,7 +36,7 @@
             min-height: 100vh; 
         }
 
-        /* ----- HIỆU ỨNG CHUYỂN ĐỘNG (ANIMATIONS) ----- */
+        /* ----- HIỆU ỨNG CHUYỂN ĐỘNG MƯỢT MÀ ----- */
         @keyframes fadeInDown {
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -52,8 +52,8 @@
             width: 100%; max-width: 500px; 
             background: var(--box-bg); 
             padding: 35px 25px; border-radius: 40px; 
-            box-shadow: 0 20px 45px rgba(255, 143, 163, 0.25); 
-            border: 5px double var(--pink-border); 
+            box-shadow: 0 20px 45px rgba(0, 119, 182, 0.15); 
+            border: 5px double var(--sea-border); 
             display: flex; flex-direction: column; position: relative; 
             animation: fadeInDown 0.6s ease-out;
         }
@@ -64,17 +64,17 @@
         .decor-ribbon.right { right: 30px; }
         
         .search-box { 
-            background: linear-gradient(135deg, #fff5f6, var(--pink-light)); 
-            border: 2.5px dashed #ff758f; padding: 18px; border-radius: 28px; margin-bottom: 25px; 
-            box-shadow: inset 0 4px 10px rgba(255, 117, 143, 0.05); 
+            background: linear-gradient(135deg, #f0fafd, var(--sea-bg)); 
+            border: 2.5px dashed var(--sea-border); padding: 18px; border-radius: 28px; margin-bottom: 25px; 
+            box-shadow: inset 0 4px 10px rgba(0, 119, 182, 0.03); 
         }
-        .search-box-title { font-size: 12px; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--pink-dark); display: flex; align-items: center; gap: 6px; }
+        .search-box-title { font-size: 12px; font-weight: 700; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--sea-dark); display: flex; align-items: center; gap: 6px; }
         .search-input { 
             width: 100%; padding: 14px 18px; font-size: 14px; border-radius: 20px; 
-            border: 2px solid var(--pink-dot); outline: none; background: #fff; color: var(--text-dark); 
+            border: 2px solid var(--sea-dot); outline: none; background: #fff; color: var(--text-dark); 
             transition: border-color 0.3s, box-shadow 0.3s;
         }
-        .search-input:focus { border-color: var(--pink-main); box-shadow: 0 0 10px rgba(255, 77, 109, 0.2); }
+        .search-input:focus { border-color: var(--sea-main); box-shadow: 0 0 10px rgba(0, 119, 182, 0.2); }
 
         .btn-main { 
             width: 100%; padding: 16px 20px; font-size: 14px; font-weight: 700; border: none; 
@@ -84,63 +84,60 @@
         .btn-main:hover { transform: translateY(-3px); filter: brightness(1.05); }
         .btn-main:active { transform: translateY(1px); }
         
-        .btn-help { color: #fff; background: linear-gradient(135deg, #ffca3a, #ff9f1c); box-shadow: 0 6px 15px rgba(255, 159, 28, 0.3); }
-        .btn-rank { color: #fff; background: linear-gradient(135deg, #ff85a1, var(--pink-main)); box-shadow: 0 6px 15px rgba(255, 77, 109, 0.3); }
-        .btn-xu { color: #245500; background: linear-gradient(135deg, #9ef01a, #70e000); box-shadow: 0 6px 15px rgba(112, 224, 0, 0.3); }
+        .btn-help { color: #5c3d00; background: linear-gradient(135deg, #ffe082, #ffb300); box-shadow: 0 6px 15px rgba(255, 179, 0, 0.25); }
+        .btn-rank { color: #fff; background: linear-gradient(135deg, #4ea8de, var(--sea-main)); box-shadow: 0 6px 15px rgba(0, 119, 182, 0.3); }
+        .btn-xu { color: #fff; background: linear-gradient(135deg, #52b788, #2d6a4f); box-shadow: 0 6px 15px rgba(45, 106, 79, 0.25); }
 
         .info-box { 
-            margin-top: 8px; padding: 20px; background: rgba(255, 253, 253, 0.95); 
-            border: 2px dashed var(--pink-dot); border-radius: 28px; display: none; 
+            margin-top: 8px; padding: 20px; background: rgba(252, 254, 255, 0.98); 
+            border: 2px dashed var(--sea-dot); border-radius: 28px; display: none; 
             animation: scaleUp 0.3s ease-out;
         }
         .help-content { color: var(--text-gray); font-size: 13px; line-height: 1.8; }
         .help-content p { margin-bottom: 4px; }
-        .help-content .help-title { margin-bottom: 10px; font-weight: 500; color: var(--pink-main); }
+        .help-content .help-title { margin-bottom: 10px; font-weight: 500; color: var(--sea-main); }
 
         /* ----- RANKING LIST STYLES ----- */
-        .total-badge { font-size: 12px; font-weight: 700; color: #40916c; margin-bottom: 14px; background: #d8f3dc; padding: 6px 14px; border-radius: 12px; display: inline-block; border: 1px solid #b7e4c7; }
+        .total-badge { font-size: 12px; font-weight: 700; color: #0077b6; margin-bottom: 14px; background: #e0f2fe; padding: 6px 14px; border-radius: 12px; display: inline-block; border: 1px solid #bae6fd; }
         .rank-list-container { display: flex; flex-direction: column; gap: 12px; width: 100%; }
         
-        .cute-rank-item { border: 1px solid #ffe3e8; border-radius: 20px; overflow: hidden; background: #fff; box-shadow: 0 4px 10px rgba(255, 182, 193, 0.08); transition: all 0.3s ease; }
-        .gentleman-card-style.cute-rank-item { border-color: var(--boy-border); box-shadow: 0 4px 10px rgba(0, 48, 73, 0.04); }
+        .cute-rank-item { border: 1px solid #e2f1f7; border-radius: 20px; overflow: hidden; background: #fff; box-shadow: 0 4px 10px rgba(0, 119, 182, 0.04); transition: all 0.3s ease; }
+        .gentleman-card-style.cute-rank-item { border-color: #a8dadc; box-shadow: 0 4px 10px rgba(3, 4, 94, 0.04); }
 
         .click-header-line { display: flex; justify-content: space-between; align-items: center; padding: 15px 18px; cursor: pointer; user-select: none; transition: background 0.3s; }
-        .click-header-line:hover { background: #fffafb; }
+        .click-header-line:hover { background: #f7fcfe; }
         
-        .active-folder .click-header-line { background: var(--pink-light) !important; color: var(--pink-main) !important; }
-        .active-folder.gentleman-card-style .click-header-line { background: var(--boy-bg) !important; color: var(--boy-text) !important; }
+        .active-folder .click-header-line { background: #f0fafd !important; color: var(--sea-main) !important; }
+        .active-folder.gentleman-card-style .click-header-line { background: #edf6f9 !important; color: var(--sea-dark) !important; }
 
-        .header-left { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--text-dark); transition: color 0.3s; }
-        .gentleman-card-style .header-left { color: var(--boy-text); font-weight: 700; }
+        .header-left { display: flex; align-items: center; gap: 10px; font-size: 13.5px; color: var(--text-dark); transition: color 0.3s; font-weight: 500; }
         .rank-number { font-weight: 700; width: 24px; text-align: center; }
 
-        .count-badge { font-weight: 700; padding: 5px 12px; border-radius: 20px; font-size: 11px; color: var(--pink-main); background: #fff5f6; border: 1px solid var(--pink-dot); transition: all 0.3s; }
-        .gentleman-card-style .count-badge { color: var(--boy-text); background: var(--boy-bg); border: 1px solid var(--boy-border); }
+        .count-badge { font-weight: 700; padding: 5px 12px; border-radius: 20px; font-size: 11px; color: var(--sea-main); background: #f0fafd; border: 1px solid var(--sea-dot); transition: all 0.3s; }
+        .gentleman-card-style .count-badge { color: #2d6a4f; background: #e8f5e9; border: 1px solid #c8e6c9; }
 
-        .rank-content-box { display: none; padding: 18px; background: #fffdfd; border-top: 1px solid #fff0f2; animation: fadeInDown 0.3s ease-out; }
+        .rank-content-box { display: none; padding: 18px; background: #fffdfd; border-top: 1px solid #f0fafd; animation: fadeInDown 0.3s ease-out; }
         .active-folder .rank-content-box { display: block !important; }
-        .active-folder.gentleman-card-style .rank-content-box { background: #fcfdfe !important; border-top-color: var(--boy-border) !important; }
 
-        .summary-rarity-line { font-size: 12px; padding: 8px 12px; margin-bottom: 12px; border-radius: 12px; background: #fff5f6; border-left: 4px solid var(--pink-main); color: var(--text-dark); font-weight: 500; line-height: 1.5; }
-        .gentleman-card-style .summary-rarity-line { background: #f0f9ff !important; border-left-color: #3b82f6 !important; }
+        .summary-rarity-line { font-size: 12px; padding: 8px 12px; margin-bottom: 12px; border-radius: 12px; background: #f0fafd; border-left: 4px solid var(--sea-main); color: var(--text-dark); font-weight: 500; line-height: 1.5; }
 
         .flower-chip-container { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
         .flower-chip-item { display: inline-block; padding: 6px 12px; border-radius: 14px; font-size: 11.5px; margin: 3px; transition: transform 0.2s; }
         .flower-chip-item:hover { transform: scale(1.05); }
         
-        .xu-missing-badge { display: inline-block; padding: 6px 12px; border-radius: 14px; font-size: 11.5px; background: #fff; border: 1px solid var(--pink-dot); color: #a4133c; font-weight: 500; margin: 3px; transition: transform 0.2s; }
-        .xu-missing-badge:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(255, 182, 193, 0.2); }
+        .xu-missing-badge { display: inline-block; padding: 6px 12px; border-radius: 14px; font-size: 11.5px; background: #fff; border: 1px solid var(--sea-dot); color: var(--sea-dark); font-weight: 500; margin: 3px; transition: transform 0.2s; }
+        .xu-missing-badge:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0, 119, 182, 0.1); }
 
-        /* ----- TIERS ----- */
-        .tier-green { background: linear-gradient(135deg, #ebfbee 0%, #cbf3d6) !important; border: 1px solid #b7e4c7 !important; color: #2d6a4f !important; font-weight: 500; }
-        .tier-purple { background: linear-gradient(135deg, #f3f0ff 0%, #eebefa) !important; border: 1px solid #d0bfff !important; color: #5f3dc4 !important; font-weight: 500; }
-        .tier-orange { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2 100%) !important; border: 1.5px solid #ff9800 !important; color: #e65100 !important; font-weight: 600 !important; box-shadow: 0 2px 5px rgba(255, 152, 0, 0.15) !important; }
-        .tier-pink { background: linear-gradient(135deg, #fff0f6 0%, #ffdeeb 100%) !important; border: 2px solid #ff85a1 !important; color: #a4133c !important; font-weight: 700 !important; box-shadow: 0 3px 8px rgba(255, 133, 161, 0.3) !important; }
+        /* ----- TIERS PHẨM CHẤT HOA ----- */
+        .tier-green { background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9) !important; border: 1px solid #a8dadc !important; color: #2e7d32 !important; font-weight: 500; }
+        .tier-purple { background: linear-gradient(135deg, #f3e5f5 0%, #e1bee7) !important; border: 1px solid #d1c4e9 !important; color: #6a1b9a !important; font-weight: 500; }
+        .tier-orange { background: linear-gradient(135deg, #fff3e0 0%, #ffe0b2) !important; border: 1.5px solid #ffa726 !important; color: #e65100 !important; font-weight: 600 !important; }
+        .tier-pink { background: linear-gradient(135deg, #ffe0e6 0%, #ffb3c1) !important; border: 2px solid #ff4d6d !important; color: #c9184a !important; font-weight: 700 !important; box-shadow: 0 2px 6px rgba(255, 77, 109, 0.15) !important; }
 
         /* ----- SEARCH AREA ----- */
         .search-title { font-size: 13px; font-weight: 700; color: var(--text-gray); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 4px; }
         .single-flower-block { padding: 18px; border-radius: 24px; font-size: 13.5px; line-height: 1.6; margin-bottom: 14px; animation: fadeInDown 0.3s ease-out; }
-        .flower-found { border: 2.5px solid var(--pink-dot); background: #fff5f6; color: #b7094c; box-shadow: 0 6px 15px rgba(255,182,193,0.12); }
+        .flower-found { border: 2.5px solid var(--sea-dot); background: #f0fafd; color: var(--sea-dark); box-shadow: 0 6px 15px rgba(0,119,182,0.06); }
         .flower-empty { border: 2.5px solid #dee2e6; background: #fafafa; color: #888; }
         .flower-not-found { border: 2.5px solid #dee2e6; background: #fafafa; color: #999; text-align: center; }
     </style>
@@ -148,10 +145,10 @@
 <body>
 
 <div class="garden-container">
-    <span class="decor-ribbon left">🎀</span>
-    <span class="decor-ribbon right">🎀</span>
+    <span class="decor-ribbon left">🌊</span>
+    <span class="decor-ribbon right">🌊</span>
 
-    <h2 style="text-align: center; color: var(--pink-main); margin-bottom: 20px;">🌸 Queenss Garden 👑</h2>
+    <h2 style="text-align: center; color: var(--sea-main); margin-bottom: 20px;">🌊 Queenss Garden 🏝️</h2>
     
     <div class="search-box">
         <div class="search-box-title">🌱 Tìm theo tên hoa:</div>
@@ -165,9 +162,9 @@
                 <div id="helpBox" class="info-box">
                     <div class="help-content">
                         <p class="help-title">Chào mừng các nàng và các chàng đến với mảnh vườn <strong>Queenss Garden</strong>!</p>
-                        <p>🌸 <strong>Tìm ai có hoa gì:</strong> Gõ từ khóa tên hoa vào ô tìm kiếm ở trên.</p>
-                        <p>🌸 <strong>Xem bảng xếp hạng:</strong> Bấm nút màu hồng bên dưới (chỉ tính từ phẩm tím trở lên).</p>
-                        <p>🌸 <strong>Kiểm tra hoa xu:</strong> Bấm nút xanh lục để biết loài hoa nào cả hội đang thiếu.</p>
+                        <p>🌊 <strong>Tìm ai có hoa gì:</strong> Gõ từ khóa tên hoa vào ô tìm kiếm ở trên.</p>
+                        <p>🌊 <strong>Xem bảng xếp hạng:</strong> Bấm nút màu hồng bên dưới (chỉ tính từ phẩm tím trở lên).</p>
+                        <p>🌊 <strong>Kiểm tra hoa xu:</strong> Bấm nút xanh lục để biết loài hoa nào cả hội đang thiếu.</p>
                     </div>
                 </div>
             </div>
@@ -196,7 +193,6 @@
 
 <script>
     // --- 1. KHAI BÁO VÀ CHUẨN HÓA DỮ LIỆU GỐC ---
-    // Hàm chuẩn hóa tự động đã được làm gọn
     const standardizeName = str => {
         if (!str) return '';
         let s = str.normalize('NFC').trim().toLowerCase();
@@ -216,33 +212,33 @@
 
     const rawMembers = [
         { name: "Cá chiên (Anh Kiệt)", flowers: ["Dạ yến thảo lam", "Hoa anh thảo hồng", "Lạp mai đỏ", "Hồng champagne", "Hoa hành tím", "Vạn tuế lá lam", "Diên vĩ đức trắng vàng", "Hồng lenten đỏ", "Địa lan trắng", "Mộc hương cam", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Mộc lan ngọc ngà", "Lay ơn tím", "Hồng môn phấn", "Trái tim đá quý"] },
-        { name: "Cá kho (lh cá chin)", flowers: ["Dạ yến thảo lam", "Hoa anh thảo xanh", "Lạp mai đỏ", "Mạn châu sa", "Hoa hải quỳ trắng", "Ngôi sao bethlehem", "Diên vĩ đức trắng vàng", "San hô tím", "Hải quỳ đỏ", "Hoa poppy đỏ", "Hoa phi yến lam", "Hoa lồng đèn tím", "Lan vũ nữ đỏ", "Hải đường hồng", "Tường vi xanh", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Loa kèn peru đỏ", "Đông trùng thông vàng", "Đông trùng thông tím", "Ngót nghẻo hồng phấn", "Hoa thụy hương trắng tuyết", "Hoa lập kim hồng san hô", "Hoa mặt rồng đỏ tươi", "Hoa sao nhái trắng", "Thục quỳ đỏ", "Thục quỳ vàng", "Hải đường vàng", "Hoa thuý châu tím", "Ghim cài lửa", "Ghim cài vàng mật", "Hoa anh thảo hồng nhạt", "Mộc lan ngọc ngà", "Mẫu đơn ánh tím", "Cá heo trắng", "Nguyệt quý mây hồng", "Gấu hoa hồng", "Cừu bông ngọt ngào", "San hô xanh"] },
+        { name: "Cá kho (lh cá chin)", flowers: ["Dạ yến thảo lam", "Hoa anh thảo xanh", "Lạp mai đỏ", "Mạn châu sa", "Hoa hải quỳ trắng", "Ngôi sao bethlehem", "Diên vĩ đức trắng vàng", "San hô tím", "Hải quỳ đỏ", "Hoa poppy đỏ", "Hoa phi yến lam", "Hoa lồng đèn tím", "Lan vũ nữ đỏ", "Hải đường hồng", "Tường vi xanh", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Loa kèn peru đỏ", "Đông trùng thông vàng", "Đông trùng thông tím", "Ngót nghẻo hồng phấn", "Hoa thụy hương trắng tuyết", "Hoa lập kim hồng san hô", "Hoa mặt rồng đỏ tươi", "Hoa sao nhái trắng", "Thục quỳ đỏ", "Thục quỳ vàng", "Hải đường vàng", "Hoa thuý châu tím", "Ghim cài lửa", "Ghim cài vàng mật", "Hoa anh thảo hồng nhạt", "Mộc lan ngọc ngà", "Mẫu đơn ánh tím", "Cá heo trắng", "Nguyệt quý mây hồng", "Gấu hoa hồng", "Cừu bông ngọt ngào", "San hô xanh", "Hoa lồng đèn đỏ", "Vạn tuế lá xanh"] },
         { name: "Tinkerbell (Cẩm Tiên cute)", flowers: ["Đăng tiêu trắng tím", "Đông trùng thông vàng", "Sen trời đầy sao", "Tuyết mai hồng", "Thược dược hồng", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Nhụy linh ánh sao", "Hoa bồ câu tím", "Gừng sen bạch ngọc", "Gừng sen ban mai", "Hoa anh thảo vàng", "Hồng lenten đỏ", "Cúc thược dược cam", "Hoa poppy himalaya xanh", "Hồng môn phấn", "Mộc hương cam", "Tử đằng lam", "Cúc indo hồng", "Diên vĩ đức kem đỏ", "Đăng tiêu cam vàng", "Dạ yến thảo lam", "Hoa anh thảo hồng", "Hoa anh thảo xanh", "Hồng champagne", "Mạn châu sa", "San hô xanh", "Ngôi sao bethlehem", "Hoa phi yến tím", "Mộc lan ngọc ngà", "Lạp mai hương phi", "Phù dung tím hộp báu", "Thỏ ngọc ôm ánh sáng", "Hạc gửi ngân hà", "Tử linh phúc lộc", "Đế vương xích diễm", "Gấu hoa hồng", "Có rồng ắt linh", "Hạnh nguyệt nghỉ dưới bóng hoa", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Thanh cúc hồng", "Lạc tân phụ tím", "Thục quỳ hồng", "Tỏi trời", "Thanh cúc lam", "Hoa baby trắng", "Trúc đào hồng nhạt", "Ghim cài vàng mật", "Hoa báo xuân hồng", "Hoa huyên tím trắng", "Hoa anh thảo xanh nhạt", "Nguyệt quý mây hồng", "Trái tim đá quý", "Hoa thụy hương trắng tuyết", "Hồng jacqueline trắng", "Hải đường vàng", "Trái tim tìm mật", "Trái tim mộng ảo", "Hoa mặt rồng đỏ tươi", "Hoa lập kim xanh sẫm", "Huệ hosta lam", "Hoa báo xuân vàng", "Ghim cài hồng hạnh", "Hoa lửa thanh ly", "Hoa hồng sa mạc hồng nhạt", "Thanh loan bích vũ"] },
-        { name: "A Xa Ry (Bạch Yến)", flowers: ["Hoa anh thảo hồng", "Dạ yến thảo lam", "Hồng champagne", "Ngôi sao bethlehem", "Nhài nhật", "Lan phượng vĩ đỏ", "Diên vĩ đức trắng vàng", "Hồng môn phấn", "Mạn đà la", "Cúc indo hồng", "Hoa sao nhái tím", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Đông trùng thông vàng", "Hoa mặt rồng hồng phấn", "Mộc lan ngọc ngà", "Thỏ ngọc ôm ánh sáng", "Trái tim đá quý", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Thanh cúc hồng", "Lạc tân phụ tím", "Tỏi trời", "Thanh cúc lam", "Hoa baby trắng", "Vạn tuế lá lam", "Hoa lửa thanh ly"] },
+        { name: "A Xa Ry (Bạch Yến)", flowers: ["Hoa anh thảo hồng", "Dạ yến thảo lam", "Hồng champagne", "Ngôi sao bethlehem", "Nhài nhật", "Lan phượng vĩ đỏ", "Diên vĩ đức trắng vàng", "Hồng môn phấn", "Mạn đà la", "Cúc indo hồng", "Hoa sao nhái tím", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Đông trùng thông vàng", "Hoa mặt rồng hồng phấn", "Mộc lan ngọc ngà", "Thỏ ngọc ôm ánh sáng", "Trái tim đá quý", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Thanh cúc hồng", "Lạc tân phụ tím", "Tỏi trời", "Thanh cúc lam", "Hoa baby trắng", "Vạn tuế lá lam", "Hoa lửa thanh ly", "Thược dược đỏ"] },
         { name: "Mộng dâu (Hi Mỹ)", flowers: ["Hồng cecil phấn", "Phù dung cam hộp báu", "Dạ yến thảo lam", "Hoa anh thảo hồng", "Hoa anh thảo xanh", "Hồng champagne", "Mạch môn hồng phấn", "Hoa lộ vi trắng", "Mộc hương trắng", "Tử đằng hồng", "Diên vĩ đức hồng tím", "Hoa lộ vi hồng", "Tuyết mai trắng", "Hoa loa kèn đỏ", "Gấu bông", "Cây holly vòng xanh", "Mộc lan ngọc ngà", "Nguyệt quý mây hồng", "Hạc gửi ngân hà", "Sách mai điệp ảnh", "Lạp mai đỏ", "Mạn châu sa", "San hô xanh", "Ngôi sao bethlehem", "Hoa phi yến tím", "Hồng lenten đỏ", "Hoa poppy himalaya vàng", "Hoa hải quỳ tím", "Hoa poppy cam", "Hoa loa kèn cam", "Rosa banksiae trắng", "Bụp hồng cận hồng", "Loa kèn peru đỏ", "Mao lương kem vàng", "Gừng sen hồng đào", "Đăng tiêu đỏ chu", "Đông trùng thông vàng", "Ngót nghẻo hồng phấn", "Ngót nghẻo đỏ lửa", "Thanh cúc lam", "Thục quỳ đỏ", "Trúc đào hồng nhạt", "Ghim cài vàng mật", "Hoa anh thảo tím nhạt", "Mạch môn hồng phấn", "Hoa poppy tím", "Hải quỳ đỏ", "Hoa mặt rồng đỏ tươi", "Hoa thụy hương trắng tuyết", "Hoa lập kim hồng san hô", "Loa kèn peru xanh", "Thược dược dương xỉ đỏ tươi", "Nguyệt quý sắc cam", "Trái tim đá quý"] },
-        { name: "A Ân Diệu (Quanh Thịnh Hoàng)", flowers: ["Hoa anh thảo hồng", "Hồng lenten vàng", "Hoa poppy himalaya vàng", "Hải quỳ đỏ", "Cây sống đời đỏ", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Dạ yến thảo lam", "San hô tím", "Thược dược đỏ", "Hạc gửi ngân hà", "Hoa anh thảo xanh", "Hồng champagne", "Trái tim đá quý", "Ngân hà chiếu nhụy"] },
-        { name: "Nọng xinh (Thanh Nga)", flowers: ["Thược dược trắng", "Dạ yến thảo lam", "Hoa anh thảo hồng", "Lạp mai đỏ", "Ngôi sao bethlehem", "Hoa hành tím", "Diên vĩ đức trắng vàng", "Hồng lenten đỏ", "Cây sống đời vàng", "Mạch môn hồng phấn", "Hoa lộ vi trắng", "Cúc thược dược cam", "Lan vũ nữ vàng", "Hoa poppy himalaya xanh", "Mạn đà la", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Ngân hà chiếu nhụy", "Lạc tân phụ đỏ", "Thanh cúc hồng", "Lạc tân phụ tím", "Thục quỳ hồng", "Tỏi trời", "Thanh cúc lam", "Hoa sao nhái trắng", "Thanh cúc tím", "Lạc tân phụ lam", "Hoa mặt rồng đỏ tươi", "Cúc thược dược đen", "Hoa lửa thanh ly", "Hoa hồng sa mạc hồng nhạt"] },
-        { name: "Mộng khiết (Yến Ly)", flowers: ["Cây holly vòng xanh", "Dạ yến thảo lam", "Hoa anh thảo hồng", "Hồng champagne", "Mạch môn hồng phấn", "Hoa lộ vi trắng", "Hồng môn phấn", "Mạn đà la", "Hải quỳ cam", "Mộc hương trắng", "San hô cam", "Lay ơn trắng", "Gấu bông", "Bụp hồng cận hồng", "Mộc lan ngọc ngà", "Cá heo xanh", "Trái tim đá quý", "Hoa phi yến hồng", "Cúc indo cam", "Hoa sao nhái hồng", "Ngôi sao bethlehem"] },
-        { name: "Hải Đường (Thanh Ngân)", flowers: ["Trái tim đá quý", "Mộc lan ngọc ngà", "Cá heo hồng", "Hoa hành tím", "Lan phượng vĩ đỏ", "Hoa poppy himalaya xanh", "San hô tím", "Hoa poppy tím", "Hoa lồng đèn cam", "Lan vũ nữ cam", "Dạ yến thảo lam", "Hồng champagne", "Cúc thược dược cam", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Hoa anh thảo hồng", "Hoa anh thảo xanh", "Ngôi sao bethlehem", "Hoa sao nhái trắng", "Thục quỳ hồng", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Thanh cúc tím", "Mạn châu sa", "Tiên nữ rải hoa", "Hoa mặt rồng đỏ tươi", "Hoa hồng sa mạc hồng nhạt"] },
+        { name: "A Ân Diệu (Quanh Thịnh Hoàng)", flowers: ["Hoa anh thảo hồng", "Dạ yến thảo lam", "San hô tím", "Thược dược đỏ", "Thược dược trắng", "Lay ơn tím", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Thanh cúc tím", "Thanh cúc hồng", "Lạc tân phụ tím", "Tỏi trời", "Cúc thược dược đen", "Nhài nhật", "Trái tim đá quý", "Ngân hà chiếu nhụy"] },
+        { name: "Nọng xinh (Thanh Nga)", flowers: ["Thược dược trắng", "Dạ yến thảo lam", "Hoa anh thảo hồng", "Lạp mai đỏ", "Ngôi sao bethlehem", "Hoa hành tím", "Diên vĩ đức trắng vàng", "Hồng lenten đỏ", "Cây sống đời vàng", "Mạch môn hồng phấn", "Hoa lộ vi trắng", "Cúc thược dược cam", "Lan vũ nữ vàng", "Hoa poppy himalaya xanh", "Mạn đà la", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Ngân hà chiếu nhụy", "Lạc tân phụ đỏ", "Thanh cúc hồng", "Lạc tân phụ tím", "Thục quỳ hồng", "Tỏi trời", "Thanh cúc lam", "Hoa sao nhái trắng", "Thanh cúc tím", "Lạc tân phụ lam", "Hoa mặt rồng đỏ tươi", "Cúc thược dược đen", "Hoa lửa thanh ly", "Hoa hồng sa mạc hồng nhạt", "Hồng môn phấn"] },
+        { name: "Mộng khiết (Yến Ly)", flowers: ["Cây holly vòng xanh", "Dạ yến thảo lam", "Hoa anh thảo hồng", "Hồng champagne", "Mạch môn hồng phấn", "Hoa lộ vi trắng", "Hồng môn phấn", "Mạn đà la", "Hải quỳ cam", "Mộc hương trắng", "San hô cam", "Lay ơn trắng", "Gấu bông", "Bụp hồng cận hồng", "Mộc lan ngọc ngà", "Cá heo xanh", "Trái tim đá quý", "Hoa phi yến hồng", "Cúc indo cam", "Hoa sao nhái hồng", "Ngôi sao bethlehem", "Vạn tuế lá lam"] },
+        { name: "Hải Đường (Thanh Ngân)", flowers: ["Trái tim đá quý", "Mộc lan ngọc ngà", "Cá heo hồng", "Hoa hành tím", "Lan phượng vĩ đỏ", "Hoa poppy himalaya xanh", "San hô tím", "Hoa poppy tím", "Hoa lồng đèn cam", "Lan vũ nữ cam", "Dạ yến thảo lam", "Hồng champagne", "Cúc thược dược cam", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Hoa anh thảo hồng", "Hoa anh thảo xanh", "Ngôi sao bethlehem", "Hoa sao nhái trắng", "Thục quỳ hồng", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Thanh cúc tím", "Mạn châu sa", "Tiên nữ rải hoa", "Hoa mặt rồng đỏ tươi", "Hoa hồng sa mạc hồng nhạt", "Diên vĩ đức hồng tím", "Hoa poppy cam", "Hoa phi yến tím"] },
         { name: "Mina (Mỹ Anh)", flowers: ["Ngân hà chiếu nhụy", "Mộc lan ngọc ngà", "Dạ yến thảo lam", "Hoa anh thảo hồng", "Lạp mai đỏ", "Hồng champagne", "Địa lan trắng", "Mạn đà la", "San hô tím", "Hoa poppy cam", "Thược dược trắng", "Lay ơn tím", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Thanh cúc tím", "Thanh cúc hồng", "Lạc tân phụ tím", "Tỏi trời", "Cúc thược dược đen", "Nhài nhật", "Trái tim đá quý"] },
         { name: "Sương (Sương)", flowers: ["Lạp mai đỏ", "Bụp hồng cận hồng", "Dạ yến thảo lam", "Hoa anh thảo xanh", "Hồng champagne", "Hoa lộ vi vàng", "Mộc hương cam", "Gấu bông", "Cây holly vòng xanh", "Mộc lan ngọc ngà", "Trúc đào hồng nhạt", "Tỏi trời", "Trái tim đá quý", "Ngân hà chiếu nhụy", "Lan phượng vĩ đỏ"] },
-        { name: "Mẫn hoa (Thảo Vy)", flowers: ["Hải đường đỏ", "Đỗ quyên hồng", "Hoa anh thảo tím nhạt", "Lan phượng vĩ đỏ", "Thục quỳ hồng", "Tỏi trời", "Thanh cúc lam", "Vạn tuế lá xanh", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Thanh cúc hồng", "Lạc tân phụ tím", "Thanh cúc tím", "Dạ yến thảo lam", "Hoa anh thảo hồng", "Lạp mai đỏ", "Mạn châu sa", "San hô xanh", "Ngôi sao bethlehem", "Hồng lenten vàng", "Mạch môn hồng phấn", "Hoa hải quỳ hồng", "Hoa thuý châu tím", "Hoa poppy đỏ", "Hoa poppy cam", "Cúc indo hồng", "Diên vĩ đức hồng tím", "Hồng lenten hồng", "Mạch môn sương trắng", "Hoa sao nhái tím", "Lay ơn vàng", "Thược dược hồng", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Loa kèn peru đỏ", "Đông trùng thông vàng", "Đông trùng thông tím", "Đông trùng thông hồng", "Hoa thụy hương trắng tuyết", "Hoa huệ mưa thanh nhã", "Hoa mặt rồng hồng phấn", "Hồng cecil lam", "Sắc cam mùa xuân", "Mẫu đơn ánh ngọc", "Nguyệt quý mây hồng", "Nguyệt quý ánh vàng", "Hương hoa diên vĩ", "Cúc mẫu đơn tím nho", "Trái tim tìm mật", "Trái tim đá quý", "Ngân hà chiếu nhụy", "Hạnh nguyệt nghỉ dưới bóng hoa", "Trái tim mộng ảo", "Ngọc lan lưu hương", "Lung linh bóng trăng", "Lan vũ nữ đỏ", "Sen trời đầy sao", "Hoa mặt rồng đỏ tươi", "Trúc đào xanh", "Đỗ quyên vàng", "Hoa thuý châu tím", "Hoa lập kim hồng san hô", "Hoa ông lão tím", "Đỗ quyên đỏ", "Hoa poppy himalaya tím", "Tường vi vàng", "Hoa thuý châu trắng", "Tiếng sao hoa lung", "Cẩm chướng gấm đỏ", "Cúc mẫu đơn cam ráng chiều", "Từ cô tím mây", "Tiên nữ rải hoa"] },
+        { name: "Mẫn hoa (Thảo Vy)", flowers: ["Hải đường đỏ", "Đỗ quyên hồng", "Hoa anh thảo tím nhạt", "Lan phượng vĩ đỏ", "Thục quỳ hồng", "Tỏi trời", "Thanh cúc lam", "Vạn tuế lá xanh", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Thanh cúc hồng", "Lạc tân phụ tím", "Thanh cúc tím", "Dạ yến thảo lam", "Hoa anh thảo hồng", "Lạp mai đỏ", "Mạn châu sa", "San hô xanh", "Ngôi sao bethlehem", "Hồng lenten vàng", "Mạch môn hồng phấn", "Hoa hải quỳ hồng", "Hoa thuý châu tím", "Hoa poppy đỏ", "Hoa poppy cam", "Cúc indo hồng", "Diên vĩ đức hồng tím", "Hồng lenten hồng", "Mạch môn sương trắng", "Hoa sao nhái tím", "Lay ơn vàng", "Thược dược hồng", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Loa kèn peru đỏ", "Đông trùng thông vàng", "Đông trùng thông tím", "Đông trùng thông hồng", "Hoa thụy hương trắng tuyết", "Hoa huệ mưa thanh nhã", "Hoa mặt rồng hồng phấn", "Hồng cecil lam", "Sắc cam mùa xuân", "Mẫu đơn ánh ngọc", "Nguyệt quý mây hồng", "Nguyệt quý ánh vàng", "Hương hoa diên vĩ", "Cúc mẫu đơn tím nho", "Trái tim tìm mật", "Trái tim đá quý", "Ngân hà chiếu nhụy", "Hạnh nguyệt nghỉ dưới bóng hoa", "Trái tim mộng ảo", "Ngọc lan lưu hương", "Lung linh bóng trăng", "Lan vũ nữ đỏ", "Sen trời đầy sao", "Hoa mặt rồng đỏ tươi", "Trúc đào xanh", "Đỗ quyên vàng", "Hoa thuý châu tím", "Hoa lập kim hồng san hô", "Hoa ông lão tím", "Đỗ quyên đỏ", "Hoa poppy himalaya tím", "Tường vi vàng", "Hoa thuý châu trắng", "Tiếng sao hoa lung", "Cẩm chướng gấm đỏ", "Cúc mẫu đơn cam ráng chiều", "Từ cô tím mây", "Tiên nữ rải hoa", "Hoa lửa thanh ly", "Mộc lan vàng", "Nhài dây sắc sao", "Tử linh lan tím"] },
         { name: "Cá nướng(Thu Hà)", flowers: ["Mộc lan ngọc ngà", "Cá heo hồng", "Dạ yến thảo lam", "Hoa anh thảo xanh", "Lạp mai đỏ", "Hồng champagne", "Ngôi sao bethlehem", "Lan phượng vĩ đỏ", "Mạn đà la", "San hô cam", "Hải quỳ đỏ", "Hoa poppy tím", "Hoa lồng đèn cam", "Lan vũ nữ cam", "Hoa loa kèn hồng", "Thược dược đỏ", "Lay ơn trắng", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Thanh cúc tím", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Lạc tân phụ tím", "Thục quỳ hồng", "Hoa baby hồng", "Sắc xuân núi non", "Diều giấy đón xuân", "Hoa lộ vi trắng"] },
-        { name: "An An (Ánh Hồng)", flowers: ["Dạ yến thảo lam", "Hoa hải quỳ trắng", "Cúc thược dược đen", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Thanh cúc tím", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Thanh cúc hồng", "Lạc tân phụ tím"] },
+        { name: "An An (Ánh Hồng)", flowers: ["Dạ yến thảo lam", "Hoa hải quỳ trắng", "Cúc thược dược đen", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Thanh cúc tím", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Thanh cúc hồng", "Lạc tân phụ tím", "San hô tím"] },
         { name: "Hari (Hải Yến)", flowers: ["Mạn châu sa", "Dạ yến thảo lam", "Ngôi sao bethlehem", "Hoa poppy himalaya vàng", "San hô tím", "Mộc lan tím", "Thược dược hồng", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Hoa bồ câu tím", "Loa kèn peru xanh", "Gừng sen ban mai", "Đăng tiêu cam vàng", "Hoa mặt rồng hồng phấn", "Hồng cecil phấn", "Mẫu đơn ánh tím", "Mưa bụi cô tô", "Sách mai điệp ảnh", "Cừu bông ngọt ngào", "Cúc mẫu đơn tím nho", "Thanh cúc tím", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Thanh cúc hồng", "Thục quỳ hồng", "Tỏi trời", "Hoa mặt rồng xanh trong", "Ngọc lan lưu hương", "San hô xanh", "Lê bạch ngọc", "Diều giấy đón xuân", "Sắc xuân núi non", "Cúc mẫu đơn cam ráng chiều", "Mộc hương vàng", "Hoa hải quỳ tím", "Từ cô tím mây", "Nhài dây trắng mây"] },
         { name: "Henniken (Hương)", flowers: ["Hạc gửi ngân hà", "Hoa hành tím", "Lan phượng vĩ đỏ", "Hồng môn phấn", "Lay ơn trắng", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Dạ yến thảo lam", "Lạp mai đỏ", "Tường vi hồng", "Vạn tuế lá lam", "Hoa anh thảo xanh"] },
-        { name: "Thời Khanh (Trúc Linh)", flowers: ["Ngân hà chiếu nhụy", "Cúc mẫu đơn tím nho", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Dạ yến thảo lam", "Hồng champagne", "Ngôi sao bethlehem", "Gấu bông", "Ghim cài lửa", "Tử linh lan đỏ", "Lạc tân phụ tím", "Lạc tân phụ đỏ", "Thanh cúc tím", "Lạc tân phụ lam", "Mưa bụi cô tô", "Hoa hải quỳ trắng", "Hoa anh thảo xanh", "Mạn châu sa", "Rosa banksiae trắng", "Lan vũ nữ đỏ", "Hoa mặt rồng đỏ tươi", "Tử linh lan hồng", "Trái tim đá quý"] },
-        { name: "Tiểu linh nhi (Gia Linh)", flowers: ["Vạn tuế lá xanh", "Thục quỳ đỏ", "Thanh cúc lam", "Tỏi trời", "Thanh cúc tím", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Thanh cúc hồng", "Lạc tân phụ tím", "Thục quỳ hồng", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Dạ yến thảo lam", "Gấu bông", "Mạn đà la"] },
-        { name: "Candy (Hoa Kẹo)", flowers: ["Dạ yến thảo lam", "Mạn châu sa", "San hô xanh", "Ngôi sao bethlehem", "Hoa ông lão tím", "Cúc indo cam", "Mộc lan tím", "Hồng lenten hồng", "Hoa sao nhái tím", "Hoa sao nhái hồng", "Địa lan xanh", "Tường vi hồng", "Gấu bông", "Bụp hồng cận hồng", "Hoa bồ câu đỏ", "Đăng tiêu đỏ chu", "Đông trùng thông tím", "Ngót nghẻo hồng phấn", "Tử kim ngoại tím", "Lung linh bóng trăng", "Nhài nhật", "Cây sống đời vàng", "Cúc thược dược cam", "Địa lan trắng", "Hải quỳ cam", "Tử đằng hồng", "Hoa poppy đỏ", "Hoa phi yến lam", "Hoa phi yến hồng", "Hoa lồng đèn cam", "Hoa lồng đèn tím", "Mộc lan vàng", "Lan vũ nữ đỏ", "Hoa poppy himalaya tím", "Lay ơn vàng", "Thược dược hồng", "Lay ơn trắng", "Lay ơn tím", "Cây holly vòng xanh", "Nhụy linh ánh sao", "Hoa bồ câu tím", "Gừng sen hồng đào", "Đông trùng thông vàng", "Bách hợp lồng đèn", "Hoa thụy hương vàng nhạt", "Hoa thụy hương trắng tuyết", "Hoa lập kim xanh sẫm", "Sen trời đầy sao", "Hoa huệ mưa thanh nhã", "Hoa mặt rồng đỏ tươi", "Cúc indo hồng", "Lạp mai linh lung", "Sắc cam mùa xuân", "Mẫu đơn ánh xanh", "Phù dung cam hộp báu", "Nguyệt quý mây hồng", "Nguyệt quý ánh vàng", "Thỏ ngọc ôm ánh sáng", "Hạc gửi ngân hà", "Trái tim đá quý", "Cá heo xanh", "Cá heo trắng", "Mẫu đơn ánh ngọc", "Phù dung hồng hộp báu", "Gấu hoa hồng", "Trái tim tìm mật", "Diều giấy đón xuân", "Tiên nữ rải hoa", "Liễu nguyệt én hót bên đình", "Thiên cung", "Hạnh nguyệt nghỉ dưới bóng hoa", "Sắc xuân núi non", "Hoa lồng đèn đỏ", "Ghim cài lửa", "Ghim cài vàng mật", "Thục quỳ đỏ", "Trái tim mộng ảo", "Hoa lập kim hồng san hô", "Hoa loa kèn đỏ", "Hoa loa kèn cam", "Hoa loa kèn peru đỏ", "Hoa lộ vi hồng", "Đăng tiêu cam vàng", "Gừng sen ban mai", "Rosa banksiae hồng", "Hoa anh thảo hồng", "Hoa loa kèn hồng", "Cẩm chướng gấm tím", "Nhài dây trắng mây", "Từ cô hồng nhạt", "Hoa lung toả hương", "Hoa lửa thanh ly", "Lạp mai đỏ", "Rosa banksiae vàng", "Hoa hồng sa mạc hồng nhạt", "Thược dược dương xỉ hồng đào"] },
+        { name: "Đạo Chích (Trúc Linh)", flowers: ["Ngân hà chiếu nhụy", "Cúc mẫu đơn tím nho", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Dạ yến thảo lam", "Hồng champagne", "Ngôi sao bethlehem", "Gấu bông", "Ghim cài lửa", "Tử linh lan đỏ", "Lạc tân phụ tím", "Lạc tân phụ đỏ", "Thanh cúc tím", "Lạc tân phụ lam", "Mưa bụi cô tô", "Hoa hải quỳ trắng", "Hoa anh thảo xanh", "Mạn châu sa", "Rosa banksiae trắng", "Lan vũ nữ đỏ", "Hoa mặt rồng đỏ tươi", "Tử linh lan hồng", "Trái tim đá quý", "Mẫu đơn ánh xanh", "Tiếng sao hoa lung"] },
+        { name: "Tiểu linh nhi (Gia Linh)", flowers: ["Vạn tuế lá xanh", "Thục quỳ đỏ", "Thanh cúc lam", "Tỏi trời", "Thanh cúc tím", "Lạc tân phụ lam", "Lạc tân phụ đỏ", "Thanh cúc hồng", "Lạc tân phụ tím", "Thục quỳ hồng", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Dạ yến thảo lam", "Gấu bông", "Mạn đà la", "Hoa hải quỳ hồng"] },
+        { name: "Candy (Hoa Kẹo)", flowers: ["Dạ yến thảo lam", "Mạn châu sa", "San hô xanh", "Ngôi sao bethlehem", "Hoa ông lão tím", "Cúc indo cam", "Mộc lan tím", "Hồng lenten hồng", "Hoa sao nhái tím", "Hoa sao nhái hồng", "Địa lan xanh", "Tường vi hồng", "Gấu bông", "Bụp hồng cận hồng", "Hoa bồ câu đỏ", "Đăng tiêu đỏ chu", "Đông trùng thông tím", "Ngót nghẻo hồng phấn", "Tử kim ngoại tím", "Lung linh bóng trăng", "Nhài nhật", "Cây sống đời vàng", "Cúc thược dược cam", "Địa lan trắng", "Hải quỳ cam", "Tử đằng hồng", "Hoa poppy đỏ", "Hoa phi yến lam", "Hoa phi yến hồng", "Hoa lồng đèn cam", "Hoa lồng đèn tím", "Mộc lan vàng", "Lan vũ nữ đỏ", "Hoa poppy himalaya tím", "Lay ơn vàng", "Thược dược hồng", "Lay ơn trắng", "Lay ơn tím", "Cây holly vòng xanh", "Nhụy linh ánh sao", "Hoa bồ câu tím", "Gừng sen hồng đào", "Đông trùng thông vàng", "Bách hợp lồng đèn", "Hoa thụy hương vàng nhạt", "Hoa thụy hương trắng tuyết", "Hoa lập kim xanh sẫm", "Sen trời đầy sao", "Hoa huệ mưa thanh nhã", "Hoa mặt rồng đỏ tươi", "Cúc indo hồng", "Lạp mai linh lung", "Sắc cam mùa xuân", "Mẫu đơn ánh xanh", "Phù dung cam hộp báu", "Nguyệt quý mây hồng", "Nguyệt quý ánh vàng", "Thỏ ngọc ôm ánh sáng", "Hạc gửi ngân hà", "Trái tim đá quý", "Cá heo xanh", "Cá heo trắng", "Mẫu đơn ánh ngọc", "Phù dung hồng hộp báu", "Gấu hoa hồng", "Trái tim tìm mật", "Diều giấy đón xuân", "Tiên nữ rải hoa", "Liễu nguyệt én hót bên đình", "Thiên cung", "Hạnh nguyệt nghỉ dưới bóng hoa", "Sắc xuân núi non", "Hoa lồng đèn đỏ", "Ghim cài lửa", "Ghim cài vàng mật", "Thục quỳ đỏ", "Trái tim mộng ảo", "Hoa lập kim hồng san hô", "Hoa loa kèn đỏ", "Hoa loa kèn cam", "Hoa loa kèn peru đỏ", "Hoa lộ vi hồng", "Đăng tiêu cam vàng", "Gừng sen ban mai", "Rosa banksiae hồng", "Hoa anh thảo hồng", "Hoa loa kèn hồng", "Cẩm chướng gấm tím", "Nhài dây trắng mây", "Từ cô hồng nhạt", "Hoa lung toả hương", "Hoa lửa thanh ly", "Lạp mai đỏ", "Rosa banksiae vàng", "Hoa hồng sa mạc hồng nhạt", "Thược dược dương xỉ hồng đào", "Tiên nữ rải hoa", "Rosa banksiae trắng", "Hoa anh thảo xanh"] },
         { name: "Chăm chăm cherri (Bảo trâm)", flowers: ["Dạ yến thảo lam", "Hoa anh thảo xanh", "Hoa anh thảo hồng", "Lạp mai đỏ", "Hồng champagne", "Mạn châu sa", "Ngôi sao bethlehem", "Hoa hải quỳ hồng", "Hoa poppy tím", "Diên vĩ đức kem đỏ", "Thược dược đỏ", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Hoa bồ câu tím", "Đông trùng thông vàng", "Cây sống đời đỏ", "Thược dược dương xỉ đỏ tươi"] },
         { name: "ChồgcủaHạDi (Quốc Toàn)", flowers: ["Ngân hà chiếu nhụy", "Hoa anh thảo hồng", "Hoa anh thảo xanh", "Lạp mai đỏ", "Hồng champagne", "Mạn châu sa", "Hoa poppy tím", "Cúc indo cam", "Cúc indo hồng", "Hoa phi yến lam", "Gấu bông", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Đông trùng thông vàng", "Đông trùng thông hồng", "Dạ yến thảo lam", "Lan vũ nữ vàng", "Ngôi sao bethlehem", "Hoa poppy đỏ", "Hoa poppy cam", "Lạc tân phụ lam", "Tỏi trời", "Thanh cúc tím", "Thanh cúc hồng", "Hoa báo xuân hồng", "Ghim cài vàng mật", "Thục quỳ vàng", "Mẫu đơn ánh tím", "Gừng sen ban mai", "Tường vi xanh", "Tường vi vàng", "Hoa baby lam", "Đại nham đồng hồng sẫm", "Hải đường hồng", "Cẩm chướng gấm tím", "Me đất cam vàng", "Trái tim đá quý", "Hoa hồng sa mạc hồng nhạt"] },
-        { name: "HạDi (Thảo Thảo)", flowers: ["Hạc gửi ngân hà", "Hoa anh thảo xanh", "Lạp mai đỏ", "Hồng champagne", "Bụp hồng cận hồng", "Dạ yến thảo lam", "Hoa anh thảo hồng", "Hoa lộ vi trắng", "Cây holly vòng xanh", "Hoa lồng đèn đỏ", "Mạch môn tím", "Hồng jacqueline trắng", "Diều giấy đón xuân", "Lê bạch ngọc", "Mộc hương vàng", "Trái tim đá quý"] },
+        { name: "HạDi (Thảo Thảo)", flowers: ["Hạc gửi ngân hà", "Hoa anh thảo xanh", "Lạp mai đỏ", "Hồng champagne", "Bụp hồng cận hồng", "Dạ yến thảo lam", "Hoa anh thảo hồng", "Hoa lộ vi trắng", "Cây holly vòng xanh", "Hoa lồng đèn đỏ", "Mạch môn tím", "Hồng jacqueline trắng", "Diều giấy đón xuân", "Lê bạch ngọc", "Mộc hương vàng", "Trái tim đá quý", "Tử linh lan tím", "Trúc đào đỏ tím", "Huệ hosta tím"] },
         { name: "Mộng Linh (Muộn)", flowers: ["Gấu bông", "Bụp hồng cận hồng", "Dạ yến thảo lam", "Hoa anh thảo hồng", "Nhài nhật", "Diên vĩ đức trắng vàng", "Cây sống đời vàng", "Cây holly vòng xanh", "Trái tim đá quý", "Hải đường đỏ", "Hoa poppy himalaya xanh"] },
-        { name: "Zishang(Naaa)", flowers: ["Dạ yến thảo lam", "Hoa anh thảo hồng", "Hoa anh thảo xanh", "Lạp mai đỏ", "Hồng champagne", "Hoa hải quỳ trắng", "Hoa hành tím", "Vạn tuế lá lam", "Hoa poppy himalaya xanh", "Hải quỳ đỏ", "Thược dược đỏ", "Thược dược trắng", "Cây holly vòng xanh", "Bụp hồng cận hồng"] }
+        { name: "Zishang(Naaa)", flowers: ["Dạ yến thảo lam", "Hoa anh thảo hồng", "Hoa anh thảo xanh", "Lạp mai đỏ", "Hồng champagne", "Hoa hải quỳ trắng", "Hoa hành tím", "Vạn tuế lá lam", "Hoa poppy himalaya xanh", "Hải quỳ đỏ", "Thược dược đỏ", "Thược dược trắng", "Cây holly vòng xanh", "Bụp hồng cận hồng", "San hô cam"] },
+        { name: "Yine (Thúy An)", flowers: ["Dạ yến thảo lam", "Nhài nhật", "Hoa lộ vi vàng", "Lay ơn trắng", "Cây holly vòng xanh", "Bụp hồng cận hồng", "Hoa anh thảo xanh nhạt"] }
     ];
 
     // --- 2. HỆ THỐNG TRA CỨU TỐI ƯU ---
-    // Khởi tạo các mảng đã được chuẩn hóa tự động một lần duy nhất
     const xuList = [...new Set(rawXuList.map(standardizeName))];
     const pinkList = rawPinkList.map(standardizeName);
     const orangeList = rawOrangeList.map(standardizeName);
@@ -254,7 +250,6 @@
         flowers: [...new Set(m.flowers.map(standardizeName))]
     }));
 
-    // Gán hạng cho từng loài hoa
     const flowerTierMap = new Map();
     pinkList.forEach(f => flowerTierMap.set(f, 4));
     orangeList.forEach(f => flowerTierMap.set(f, 3));
@@ -267,7 +262,6 @@
         return { score, className: tierClasses[score] };
     }
 
-    // Mapping danh sách người sở hữu hoa
     const flowerOwnersMap = new Map();
     const allKnownFlowers = new Set([...xuList, ...pinkList, ...orangeList, ...purpleList, ...greenList]);
     allKnownFlowers.forEach(f => flowerOwnersMap.set(f, []));
@@ -301,12 +295,11 @@
         container.className = "rank-list-container";
 
         const sortedRank = [...finalMembersData].sort((a, b) => b.totalCount - a.totalCount);
-        const rankColors = ["#ffb703", "#fb8500", "#219ebc", "#d6ccc2"];
+        const rankColors = ["#0077b6", "#0096c7", "#00b4d8", "#90e0ef"];
 
         sortedRank.forEach((item, index) => {
             const collapseItem = document.createElement('div');
             
-            // Nhận diện nam chuẩn
             const isBoy = item.name === "Cá chiên (Anh Kiệt)" || item.name === "ChồgcủaHạDi (Quốc Toàn)";
             collapseItem.className = isBoy ? "cute-rank-item gentleman-card-style" : "cute-rank-item";
 
@@ -319,14 +312,14 @@
                 return `<span class="flower-chip-item ${f.className}">${f.name}</span>`;
             }).join('');
             
-            const summaryHtml = `<div class="summary-rarity-line">👑 <strong>Đội hình tính điểm:</strong> ${tierCounts[4]} Hồng | ${tierCounts[3]} Cam | ${tierCounts[2]} Tím</div>`;
-            const numColor = index < 3 ? rankColors[index] : rankColors[3];
+            const summaryHtml = `<div class="summary-rarity-line">🌊 <strong>Đội hình tính điểm:</strong> ${tierCounts[4]} Hồng | ${tierCounts[3]} Cam | ${tierCounts[2]} Tím</div>`;
+            const numColor = index < 3 ? rankColors[index] : "#64748b";
 
             collapseItem.innerHTML = `
                 <div class="click-header-line">
                     <div class="header-left">
                         <span class="rank-number" style="color: ${numColor};">#${index + 1}</span>
-                        <span>${isBoy ? '🎩' : '👑'} ${item.name}</span>
+                        <span class="member-display-name"></span>
                     </div>
                     <span class="count-badge">${item.totalCount} loại hoa</span>
                 </div>
@@ -336,13 +329,15 @@
                 </div>
             `;
 
+            // Gán trực tiếp qua textContent để giữ nguyên dấu ngoặc () của Đạo Chích (Trúc Linh)
+            collapseItem.querySelector('.member-display-name').textContent = (isBoy ? '🎩 ' : '👑 ') + item.name;
+
             collapseItem.querySelector('.click-header-line').addEventListener('click', () => collapseItem.classList.toggle('active-folder'));
             container.appendChild(collapseItem);
         });
         mainRankArea.appendChild(container);
     }
 
-    // Cơ chế Debounce (Chống lag khi gõ)
     let debounceTimer;
     function searchFlowerLogic() {
         const rawInput = flowerInput.value.trim();
@@ -379,7 +374,7 @@
 
     flowerInput.addEventListener('input', () => {
         clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(searchFlowerLogic, 300); // Máy sẽ đợi 0.3s mới chạy lệnh tìm
+        debounceTimer = setTimeout(searchFlowerLogic, 300);
     });
 
     function updateMissingXu() {
