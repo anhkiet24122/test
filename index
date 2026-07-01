@@ -394,38 +394,390 @@
     });
 
     function updateMissingXu() {
-        const ownedSet = new Set();
-        finalMembersData.forEach(m => m.allFlowers.forEach(f => ownedSet.add(f)));
-        
-        const uniqueMissing = xuList.filter(f => !ownedSet.has(f)).sort((a, b) => a.localeCompare(b, 'vi'));
-        
-        if (uniqueMissing.length === 0) {
-            missingArea.innerHTML = `<div class="all-cleared-msg fade-in-box">🎉 Đã đổi hết hoa xu đến hiện tại, mọi người cần thì trade hoa với nhau nhé ^^ 🌸</div>`;
-        } else {
-            missingArea.innerHTML = uniqueMissing.map(item => `<span class="xu-missing-badge">${item}</span>`).join('');
-        }
-    }
+        const normalizeSearch = str =>
+    standardizeName(str)
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
 
-    const toggleBox = (showBox, hideBox1, hideBox2) => {
-        if (showBox.style.display === "block") {
-            showBox.style.display = "none";
-            showBox.classList.remove("fade-in-box");
-        } else {
-            showBox.style.display = "block";
-            showBox.classList.add("fade-in-box");
-            hideBox1.style.display = "none";
-            hideBox1.classList.remove("fade-in-box");
-            hideBox2.style.display = "none";
-            hideBox2.classList.remove("fade-in-box");
-        }
+const redList = rawRedList.map(standardizeName);
+const orangeList = rawOrangeList.map(standardizeName);
+const purpleList = rawPurpleList.map(standardizeName);
+const blueList = rawBlueList.map(standardizeName);
+const xuList = [...new Set(rawXuList.map(standardizeName))];
+
+const flowerTierMap = new Map();
+
+redList.forEach(f => flowerTierMap.set(f, 4));
+orangeList.forEach(f => flowerTierMap.set(f, 3));
+purpleList.forEach(f => flowerTierMap.set(f, 2));
+blueList.forEach(f => flowerTierMap.set(f, 1));
+
+const tierClasses = {
+    1: 'tier-blue',
+    2: 'tier-purple',
+    3: 'tier-orange',
+    4: 'tier-red'
+};
+
+const flowerInfoCache = new Map();
+
+[...redList, ...orangeList, ...purpleList, ...blueList].forEach(name => {
+    const score = flowerTierMap.get(name) || 2;
+    flowerInfoCache.set(name, {
+        score,
+        className: tierClasses[score]
+    });
+});
+
+const membersDataProcessed = rawMembers.map(member => ({
+    name: member.name,
+    flowers: [...new Set(member.flowers.map(standardizeName))]
+}));
+
+const flowerOwnersMap = new Map();
+
+const allKnownFlowers = new Set([
+    ...xuList,
+    ...redList,
+    ...orangeList,
+    ...purpleList,
+    ...blueList
+]);
+
+allKnownFlowers.forEach(f => flowerOwnersMap.set(f, []));
+
+const finalMembersData = membersDataProcessed.map(member => {
+    const totalCount = member.flowers.filter(
+        flower => (flowerTierMap.get(flower) || 2) >= 2
+    ).length;
+
+    const result = {
+        name: member.name,
+        allFlowers: member.flowers,
+        totalCount
     };
 
-    document.getElementById('btnHelp').addEventListener('click', () => toggleBox(helpBox, rankBox, missingBox));
-    document.getElementById('btnRank').addEventListener('click', () => toggleBox(rankBox, helpBox, missingBox));
-    document.getElementById('btnXu').addEventListener('click', () => toggleBox(missingBox, helpBox, rankBox));
+    member.flowers.forEach(flower => {
+        if (!flowerOwnersMap.has(flower)) {
+            flowerOwnersMap.set(flower, []);
+        }
+        flowerOwnersMap.get(flower).push(result);
+    });
 
-    initRenderRankList();
-    updateMissingXu();
-</script>
-</body>
-</html>
+    return result;
+});
+
+const searchableFlowers = Array.from(
+    flowerOwnersMap.keys()
+).map(name => ({
+    original: name,
+    normalized: normalizeSearch(name)
+}));
+
+const mainRankArea = document.getElementById('mainRankArea');
+const searchResultArea = document.getElementById('searchResultArea');
+const missingArea = document.getElementById('missingArea');
+const missingBox = document.getElementById('missingBox');
+const rankBox = document.getElementById('rankBox');
+const helpBox = document.getElementById('helpBox');
+const flowerInput = document.getElementById('flowerSearch');
+const defaultGardenWidgets = document.getElementById('defaultGardenWidgets');
+const searchViewArea = document.getElementById('searchViewArea');
+
+function getFlowerWeight(name) {
+    return flowerInfoCache.get(name) || {
+        score: 2,
+        className: 'tier-purple'
+    };
+}
+
+function initRenderRankList() {
+    mainRankArea.innerHTML =
+        `<div class="total-badge">⚓ Tổng số: ${finalMembersData.length} thành viên</div>`;
+
+    const container = document.createElement('div');
+    container.className = "rank-list-container";
+
+    const sortedRank = [...finalMembersData]
+        .sort((a, b) => b.totalCount - a.totalCount);
+
+    const rankColors = [
+        "#e76f51",
+        "#f4a261",
+        "#e9c46a",
+        "#2a9d8f"
+    ];
+
+    const maleMembers = new Set([
+        "Cá chiên (Anh Kiệt)",
+        "ChồgcủaHạDi (Quốc Toàn)"
+    ]);
+
+    sortedRank.forEach((item, index) => {
+
+        const collapseItem = document.createElement('div');
+
+        const isBoy = maleMembers.has(item.name);
+
+        collapseItem.className =
+            isBoy
+                ? "cute-rank-item gentleman-card-style"
+                : "cute-rank-item";
+
+        const sortedFlowersWithTier =
+            item.allFlowers
+                .map(f => ({
+                    name: f,
+                    ...getFlowerWeight(f)
+                }))
+                .sort(
+                    (a, b) =>
+                        b.score - a.score ||
+                        a.name.localeCompare(b.name, 'vi')
+                );
+
+        const tierCounts = {
+            4: 0,
+            3: 0,
+            2: 0,
+            1: 0
+        };
+
+        const chipsHtml =
+            sortedFlowersWithTier
+                .map(f => {
+                    tierCounts[f.score]++;
+                    return `
+                        <span class="flower-chip-item ${f.className}">
+                            ${f.name}
+                        </span>
+                    `;
+                }).join('');
+
+        const summaryHtml =
+            `<div class="summary-rarity-line">
+                🌊 <strong>Kho báu:</strong>
+                ${tierCounts[4]} Đỏ |
+                ${tierCounts[3]} Cam |
+                ${tierCounts[2]} Tím |
+                <strong>${tierCounts[1]} Xanh</strong>
+            </div>`;
+
+        const numColor =
+            index < 3
+                ? rankColors[index]
+                : "#1d3557";
+
+        collapseItem.innerHTML = `
+            <div class="click-header-line">
+                <div class="header-left">
+                    <span class="rank-number"
+                        style="color:${numColor}">
+                        #${index + 1}
+                    </span>
+                    <span class="member-display-name"></span>
+                </div>
+
+                <span class="count-badge">
+                    ${item.totalCount} loại hoa
+                </span>
+            </div>
+
+            <div class="rank-content-box">
+                ${summaryHtml}
+                <div class="flower-chip-container">
+                    ${chipsHtml}
+                </div>
+            </div>
+        `;
+
+        collapseItem.querySelector(
+            '.member-display-name'
+        ).textContent =
+            (isBoy ? '🎩 ' : '👑 ') + item.name;
+
+        container.appendChild(collapseItem);
+    });
+
+    container.addEventListener('click', e => {
+        const header =
+            e.target.closest('.click-header-line');
+
+        if (header) {
+            header.parentElement.classList.toggle(
+                'active-folder'
+            );
+        }
+    });
+
+    mainRankArea.appendChild(container);
+}
+
+let debounceTimer;
+
+function searchFlowerLogic() {
+
+    const rawInput = flowerInput.value.trim();
+
+    if (!rawInput) {
+        searchViewArea.style.display = "none";
+        defaultGardenWidgets.style.display = "flex";
+        return;
+    }
+
+    const keyword = normalizeSearch(rawInput);
+
+    defaultGardenWidgets.style.display = "none";
+    searchViewArea.style.display = "block";
+
+    const sortedMatches =
+        searchableFlowers
+            .filter(f =>
+                f.normalized.includes(keyword)
+            )
+            .map(f => f.original)
+            .sort((a, b) =>
+                a.localeCompare(b, 'vi')
+            );
+
+    if (!sortedMatches.length) {
+        searchResultArea.innerHTML = `
+            <div class="single-flower-block flower-not-found">
+                ❌ Rạn san hô này chưa có loài hoa "${rawInput}"
+            </div>
+        `;
+        return;
+    }
+
+    searchResultArea.innerHTML =
+        sortedMatches.map(name => {
+
+            const owners =
+                (flowerOwnersMap.get(name) || [])
+                    .sort(
+                        (a, b) =>
+                            a.totalCount - b.totalCount
+                    )
+                    .map(m => m.name);
+
+            return owners.length
+                ? `
+                    <div class="single-flower-block flower-found fade-in-box">
+                        🌸 <strong>${name}</strong>
+                        có <strong>${owners.length}</strong>
+                        thành viên vớt được
+                        (Xếp từ ít hoa nhất 👇):
+                        <br>
+                        👉 <em>${owners.join(', ')}</em>
+                    </div>
+                `
+                : `
+                    <div class="single-flower-block flower-empty fade-in-box">
+                        🌸 <strong>${name}</strong>:
+                        Cả đảo chưa ai vớt được.
+                    </div>
+                `;
+        }).join('');
+}
+
+flowerInput.addEventListener('input', () => {
+    clearTimeout(debounceTimer);
+    debounceTimer =
+        setTimeout(searchFlowerLogic, 250);
+});
+
+function updateMissingXu() {
+
+    const ownedSet = new Set();
+
+    finalMembersData.forEach(member => {
+        member.allFlowers.forEach(flower => {
+            ownedSet.add(flower);
+        });
+    });
+
+    const uniqueMissing =
+        xuList
+            .filter(f => !ownedSet.has(f))
+            .sort(
+                (a, b) =>
+                    a.localeCompare(b, 'vi')
+            );
+
+    if (!uniqueMissing.length) {
+        missingArea.innerHTML = `
+            <div class="all-cleared-msg fade-in-box">
+                🎉 Đã đổi hết hoa xu đến hiện tại,
+                mọi người cần thì trade hoa với nhau nhé ^^ 🌸
+            </div>
+        `;
+        return;
+    }
+
+    missingArea.innerHTML =
+        uniqueMissing.map(
+            flower =>
+                `<span class="xu-missing-badge">${flower}</span>`
+        ).join('');
+}
+
+const toggleBox = (
+    showBox,
+    hideBox1,
+    hideBox2
+) => {
+
+    if (showBox.style.display === "block") {
+        showBox.style.display = "none";
+        showBox.classList.remove(
+            "fade-in-box"
+        );
+        return;
+    }
+
+    showBox.style.display = "block";
+    showBox.classList.add(
+        "fade-in-box"
+    );
+
+    [hideBox1, hideBox2].forEach(box => {
+        box.style.display = "none";
+        box.classList.remove(
+            "fade-in-box"
+        );
+    });
+};
+
+document.getElementById('btnHelp')
+    .addEventListener(
+        'click',
+        () => toggleBox(
+            helpBox,
+            rankBox,
+            missingBox
+        )
+    );
+
+document.getElementById('btnRank')
+    .addEventListener(
+        'click',
+        () => toggleBox(
+            rankBox,
+            helpBox,
+            missingBox
+        )
+    );
+
+document.getElementById('btnXu')
+    .addEventListener(
+        'click',
+        () => toggleBox(
+            missingBox,
+            helpBox,
+            rankBox
+        )
+    );
+
+initRenderRankList();
+updateMissingXu();
