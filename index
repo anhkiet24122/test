@@ -307,7 +307,7 @@
 
     // ----- LẤY DỮ LIỆU TỪ GOOGLE SHEET -----
     async function loadDataFromSheet() {
-        if (!GOOGLE_SHEET_API_URL || GOOGLE_SHEET_API_URL === "DÁN_LINK_API_CỦA_BẠN_VÀO_ĐÂY") {
+        if (!GOOGLE_SHEET_API_URL || GOOGLE_SHEET_API_URL === "https://script.google.com/macros/s/AKfycbzdVPxV9gHIiHMlzh48wcD4bSbIcI-2D1GlDvfO0Vb6o68jRHOqxnsrPDg8QUA46rt8Sg/exec") {
             mainRankArea.innerHTML = `<div style="text-align: center; color: #e63946; font-weight: bold;">❌ Bạn chưa dán Link API Google Sheet vào code!</div>`;
             return;
         }
