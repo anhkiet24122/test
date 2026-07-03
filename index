@@ -238,7 +238,7 @@
 
 <script>
     // ===== BẠN HÃY DÁN LINK API VÀO ĐÂY =====
-    const GOOGLE_SHEET_API_URL = "DÁN_LINK_API_CỦA_BẠN_VÀO_ĐÂY";
+    const GOOGLE_SHEET_API_URL = "https://script.google.com/macros/s/AKfycbzdVPxV9gHIiHMlzh48wcD4bSbIcI-2D1GlDvfO0Vb6o68jRHOqxnsrPDg8QUA46rt8Sg/exec";
     // ========================================
 
     const standardizeName = str => {
