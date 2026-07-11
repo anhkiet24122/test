@@ -122,7 +122,7 @@
         .xu-missing-badge { background: #fff; border: 1.5px solid #e76f51; color: #e76f51; font-weight: 600; }
         .all-cleared-msg { text-align: center; padding: 16px; color: var(--sea-main); font-weight: 700; font-size: 14px; border: 2px dashed #90e0ef; border-radius: 16px; background: rgba(255,255,255,0.85); }
 
-        /* ----- MÀU SẮC HOA VÀ GLOW (Phần được thêm vào) ----- */
+        /* ----- MÀU SẮC HOA VÀ GLOW ----- */
         .tier-blue { background: linear-gradient(135deg, #e0f2fe, #bae6fd); border: 1px solid #7dd3fc; color: #0284c7; }
         .tier-purple { background: linear-gradient(135deg, #f3e5f5, #e1bee7); border: 1px solid #ba68c8; color: #6a1b9a; }
         .tier-orange { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border: 1px solid #ffb74d; color: #e65100; font-weight: 600; animation: glowOrange 2s infinite alternate; }
@@ -136,7 +136,7 @@
 
         /* ----- TÌM KIẾM HOA ----- */
         .search-title { font-size: 13px; font-weight: 700; color: var(--sea-dark); margin-bottom: 15px; text-transform: uppercase; }
-        .single-flower-block { padding: 16px; border-radius: 20px; font-size: 13px; line-height: 1.6; margin-bottom: 12px; }
+        .single-flower-block { padding: 16px; border-radius: 20px; font-size: 13px; line-height: 1.6; margin-bottom: 12px; transition: all 0.3s;}
         
         .flower-found { border: 2px solid #48cae4; background: #fff; color: var(--sea-dark); }
         .flower-empty { border: 2px dashed #90e0ef; background: rgba(255,255,255,0.8); color: var(--sea-main); }
@@ -285,10 +285,13 @@
                 let row = phammauRows[i];
                 if (row.length < 2) continue;
                 let flowerName = standardizeName(row[0].replace(/^"|"$/g, ''));
-                let tierStr = row[1] ? row[1].replace(/^"|"$/g, '').trim().toLowerCase() : '';
+                
+                // Đã tối ưu hóa đọc dữ liệu bỏ qua dấu tiếng Việt để không bị lỗi
+                let rawTier = row[1] ? row[1].replace(/^"|"$/g, '') : '';
+                let tierStrNoTone = removeVietnameseTones(rawTier);
                 let xuStr = row[2] ? row[2].replace(/^"|"$/g, '').trim().toLowerCase() : '';
 
-                let score = tierStr.includes('do') ? 4 : tierStr.includes('cam') ? 3 : tierStr.includes('xanh') ? 1 : 2;
+                let score = tierStrNoTone.includes('do') ? 4 : tierStrNoTone.includes('cam') ? 3 : tierStrNoTone.includes('xanh') ? 1 : 2;
                 
                 flowerTierMap.set(flowerName, { score, searchKey: removeVietnameseTones(flowerName) });
                 if (xuStr.includes('xu')) xuList.push(flowerName);
@@ -437,7 +440,7 @@
             
             const tierStr = tierInfo[score].text;
             const tierColor = tierInfo[score].colorClass;
-            const glowBox = tierInfo[score].boxClass; // Kích hoạt viền sáng bừng cho ô tìm kiếm nếu là hoa Đỏ/Cam
+            const glowBox = tierInfo[score].boxClass; 
 
             return owners.length 
                 ? `<div class="single-flower-block flower-found ${glowBox}">🌸 <strong>${name}</strong> - <span class="${tierColor}">[${tierStr}]</span> có <strong>${owners.length}</strong> thành viên (Xếp từ ít hoa nhất 👇):<br>👉 <em>${owners.join(', ')}</em></div>`
