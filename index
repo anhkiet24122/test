@@ -37,6 +37,18 @@
         @keyframes fadeInSoft { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes floating { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-12px) rotate(8deg); } }
 
+        /* 🔥 HIỆU ỨNG HÀO QUANG (GLOW) CHO HOA HIẾM 🔥 */
+        @keyframes glowRed {
+            0% { box-shadow: 0 0 5px rgba(230, 57, 70, 0.4), inset 0 0 5px rgba(230, 57, 70, 0.2); }
+            50% { box-shadow: 0 0 15px rgba(230, 57, 70, 0.9), inset 0 0 10px rgba(230, 57, 70, 0.4); }
+            100% { box-shadow: 0 0 5px rgba(230, 57, 70, 0.4), inset 0 0 5px rgba(230, 57, 70, 0.2); }
+        }
+        @keyframes glowOrange {
+            0% { box-shadow: 0 0 5px rgba(255, 183, 77, 0.4), inset 0 0 5px rgba(255, 183, 77, 0.2); }
+            50% { box-shadow: 0 0 15px rgba(255, 183, 77, 0.9), inset 0 0 10px rgba(255, 183, 77, 0.4); }
+            100% { box-shadow: 0 0 5px rgba(255, 183, 77, 0.4), inset 0 0 5px rgba(255, 183, 77, 0.2); }
+        }
+
         /* ----- CONTAINER CHÍNH ----- */
         .garden-container { 
             width: 100%; max-width: 520px; 
@@ -110,37 +122,44 @@
         .xu-missing-badge { background: #fff; border: 1.5px solid #e76f51; color: #e76f51; font-weight: 600; }
         .all-cleared-msg { text-align: center; padding: 16px; color: var(--sea-main); font-weight: 700; font-size: 14px; border: 2px dashed #90e0ef; border-radius: 16px; background: rgba(255,255,255,0.85); }
 
-        /* ----- MÀU SẮC HOA ----- */
+        /* ----- MÀU SẮC HOA VÀ GLOW (Phần được thêm vào) ----- */
         .tier-blue { background: linear-gradient(135deg, #e0f2fe, #bae6fd); border: 1px solid #7dd3fc; color: #0284c7; }
         .tier-purple { background: linear-gradient(135deg, #f3e5f5, #e1bee7); border: 1px solid #ba68c8; color: #6a1b9a; }
-        .tier-orange { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border: 1px solid #ffb74d; color: #e65100; font-weight: 600; }
-        .tier-red { background: linear-gradient(135deg, #fff0f2, #ffccd5); border: 2px solid #e63946; color: #d90429; font-weight: 700; }
+        .tier-orange { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border: 1px solid #ffb74d; color: #e65100; font-weight: 600; animation: glowOrange 2s infinite alternate; }
+        .tier-red { background: linear-gradient(135deg, #fff0f2, #ffccd5); border: 2px solid #e63946; color: #d90429; font-weight: 700; animation: glowRed 2s infinite alternate; }
+
+        /* Text màu cho chữ phẩm chất trong ô tìm kiếm */
+        .text-tier-red { color: #d90429; font-weight: 700; }
+        .text-tier-orange { color: #e65100; font-weight: 700; }
+        .text-tier-purple { color: #6a1b9a; font-weight: 700; }
+        .text-tier-blue { color: #0284c7; font-weight: 700; }
 
         /* ----- TÌM KIẾM HOA ----- */
         .search-title { font-size: 13px; font-weight: 700; color: var(--sea-dark); margin-bottom: 15px; text-transform: uppercase; }
         .single-flower-block { padding: 16px; border-radius: 20px; font-size: 13px; line-height: 1.6; margin-bottom: 12px; }
+        
         .flower-found { border: 2px solid #48cae4; background: #fff; color: var(--sea-dark); }
         .flower-empty { border: 2px dashed #90e0ef; background: rgba(255,255,255,0.8); color: var(--sea-main); }
         .flower-not-found { border: 2px dashed #e76f51; background: rgba(255,255,255,0.8); color: #e76f51; text-align: center; font-weight: 600;}
+
+        /* Áp dụng hào quang cho viền ô tìm kiếm nếu là hoa Đỏ / Cam */
+        .flower-found.box-tier-red { border-color: #e63946; animation: glowRed 2s infinite alternate; }
+        .flower-found.box-tier-orange { border-color: #ffb74d; animation: glowOrange 2s infinite alternate; }
+        .flower-empty.box-tier-red { border-color: #e63946; animation: glowRed 2s infinite alternate; }
+        .flower-empty.box-tier-orange { border-color: #ffb74d; animation: glowOrange 2s infinite alternate; }
+
 
         /* ----- TỐI ƯU PC (2 CỘT CHUYÊN NGHIỆP) ----- */
         @media (min-width: 1024px) {
             body { padding: 50px 20px; }
             .garden-container { max-width: 900px; padding: 40px; border-radius: 40px; }
             .main-title { font-size: 26px; margin-bottom: 30px; }
-            
-            /* Chia 2 cột CSS Flexbox */
             .main-layout { flex-direction: row; align-items: flex-start; gap: 30px; }
-            
-            /* Cột trái: Nằm im (sticky) khi scroll */
             .left-col { flex: 0 0 320px; position: sticky; top: 20px; }
-            
-            /* Cột phải: Dãn theo phần diện tích còn lại */
             .right-col { flex: 1; min-width: 0; }
-            
             .search-box { padding: 20px; margin-bottom: 0; }
             .button-group { gap: 15px; }
-            .info-box { padding: 25px; min-height: 400px; } /* Min height để UI ko bị giật khi chuyển tab */
+            .info-box { padding: 25px; min-height: 400px; } 
         }
     </style>
 </head>
@@ -155,7 +174,6 @@
     <div id="loadingArea" class="loading-screen">⚓ Đang tải dữ liệu từ bãi biển...</div>
 
     <div id="mainContentArea" class="main-layout" style="display: none;">
-        <!-- CỘT TRÁI (Điều hướng) -->
         <div class="left-col">
             <div class="search-box">
                 <div class="search-box-title">🔍 Tìm hoa ở bãi biển:</div>
@@ -169,7 +187,6 @@
             </div>
         </div>
         
-        <!-- CỘT PHẢI (Nội dung) -->
         <div class="right-col">
             <div id="helpBox" class="info-box active">
                 <div class="help-content">
@@ -298,7 +315,6 @@
             }
 
             document.getElementById('loadingArea').style.display = "none";
-            // Dùng Flex để tuân thủ class .main-layout
             document.getElementById('mainContentArea').style.display = "flex";
 
             initRenderRankList();
@@ -310,16 +326,13 @@
         }
     }
 
-    // Cơ chế quản lý Tab (Chuyên nghiệp hơn Toggle)
     function toggleTab(targetId, btnElement) {
-        currentActiveTabId = targetId; // Lưu vết tab cuối cùng user chọn
-        document.getElementById('flowerSearch').value = ''; // Reset thanh tìm kiếm khi bấm menu
+        currentActiveTabId = targetId; 
+        document.getElementById('flowerSearch').value = ''; 
         
-        // Cập nhật trạng thái Box
         document.querySelectorAll('.info-box').forEach(box => box.classList.remove('active'));
         document.getElementById(targetId).classList.add('active');
 
-        // Cập nhật trạng thái Nút
         if(btnElement) {
             document.querySelectorAll('.btn-main').forEach(btn => btn.classList.remove('active-btn'));
             btnElement.classList.add('active-btn');
@@ -330,7 +343,6 @@
         const mainRankArea = document.getElementById('mainRankArea');
         mainRankArea.innerHTML = `<div class="total-badge">⚓ Tổng số: ${finalMembersData.length} thành viên</div>`;
         
-        // Dùng DocumentFragment tối ưu hiệu suất render DOM
         const fragment = document.createDocumentFragment();
         const container = document.createElement('div');
         container.className = "rank-list-container";
@@ -383,13 +395,11 @@
     function searchFlowerLogic() {
         const rawInput = document.getElementById('flowerSearch').value.trim();
         if (rawInput === "") {
-            // Khôi phục lại tab trước đó nếu xóa trắng ô tìm kiếm
             document.querySelectorAll('.info-box').forEach(box => box.classList.remove('active'));
             document.getElementById(currentActiveTabId).classList.add('active');
             return;
         }
 
-        // Kích hoạt view tìm kiếm, bỏ highlight nút menu
         document.querySelectorAll('.info-box').forEach(box => box.classList.remove('active'));
         document.querySelectorAll('.btn-main').forEach(btn => btn.classList.remove('active-btn'));
         document.getElementById('searchViewArea').classList.add('active');
@@ -407,14 +417,31 @@
             return;
         }
 
+        // Logic bổ sung hiển thị Phẩm màu hoa khi tìm kiếm
         searchResultArea.innerHTML = sortedMatches.map(name => {
             const owners = (flowerOwnersMap.get(name) || [])
                 .sort((a, b) => a.totalCount - b.totalCount)
                 .map(m => m.name);
 
+            // Lấy điểm (từ 1 đến 4) của loại hoa này
+            const fData = flowerTierMap.get(name);
+            const score = fData ? fData.score : 2;
+            
+            // Map để lấy chữ hiển thị và class theo điểm phẩm chất
+            const tierInfo = {
+                4: { text: "Hoa phẩm Đỏ", colorClass: "text-tier-red", boxClass: "box-tier-red" },
+                3: { text: "Hoa phẩm Cam", colorClass: "text-tier-orange", boxClass: "box-tier-orange" },
+                2: { text: "Hoa phẩm Tím", colorClass: "text-tier-purple", boxClass: "" },
+                1: { text: "Hoa phẩm Xanh", colorClass: "text-tier-blue", boxClass: "" }
+            };
+            
+            const tierStr = tierInfo[score].text;
+            const tierColor = tierInfo[score].colorClass;
+            const glowBox = tierInfo[score].boxClass; // Kích hoạt viền sáng bừng cho ô tìm kiếm nếu là hoa Đỏ/Cam
+
             return owners.length 
-                ? `<div class="single-flower-block flower-found">🌸 <strong>${name}</strong> có <strong>${owners.length}</strong> thành viên (Xếp từ ít hoa nhất 👇):<br>👉 <em>${owners.join(', ')}</em></div>`
-                : `<div class="single-flower-block flower-empty">🌸 <strong>${name}</strong>: Cả đảo chưa ai vớt được.</div>`;
+                ? `<div class="single-flower-block flower-found ${glowBox}">🌸 <strong>${name}</strong> - <span class="${tierColor}">[${tierStr}]</span> có <strong>${owners.length}</strong> thành viên (Xếp từ ít hoa nhất 👇):<br>👉 <em>${owners.join(', ')}</em></div>`
+                : `<div class="single-flower-block flower-empty ${glowBox}">🌸 <strong>${name}</strong> - <span class="${tierColor}">[${tierStr}]</span>: Cả đảo chưa ai vớt được.</div>`;
         }).join('');
     }
 
