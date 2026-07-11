@@ -37,18 +37,6 @@
         @keyframes fadeInSoft { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes floating { 0%, 100% { transform: translateY(0px) rotate(0deg); } 50% { transform: translateY(-12px) rotate(8deg); } }
 
-        /* 🔥 HIỆU ỨNG HÀO QUANG (GLOW) CHO HOA HIẾM 🔥 */
-        @keyframes glowRed {
-            0% { box-shadow: 0 0 5px rgba(230, 57, 70, 0.4), inset 0 0 5px rgba(230, 57, 70, 0.2); }
-            50% { box-shadow: 0 0 15px rgba(230, 57, 70, 0.9), inset 0 0 10px rgba(230, 57, 70, 0.4); }
-            100% { box-shadow: 0 0 5px rgba(230, 57, 70, 0.4), inset 0 0 5px rgba(230, 57, 70, 0.2); }
-        }
-        @keyframes glowOrange {
-            0% { box-shadow: 0 0 5px rgba(255, 183, 77, 0.4), inset 0 0 5px rgba(255, 183, 77, 0.2); }
-            50% { box-shadow: 0 0 15px rgba(255, 183, 77, 0.9), inset 0 0 10px rgba(255, 183, 77, 0.4); }
-            100% { box-shadow: 0 0 5px rgba(255, 183, 77, 0.4), inset 0 0 5px rgba(255, 183, 77, 0.2); }
-        }
-
         /* ----- CONTAINER CHÍNH ----- */
         .garden-container { 
             width: 100%; max-width: 520px; 
@@ -122,11 +110,11 @@
         .xu-missing-badge { background: #fff; border: 1.5px solid #e76f51; color: #e76f51; font-weight: 600; }
         .all-cleared-msg { text-align: center; padding: 16px; color: var(--sea-main); font-weight: 700; font-size: 14px; border: 2px dashed #90e0ef; border-radius: 16px; background: rgba(255,255,255,0.85); }
 
-        /* ----- MÀU SẮC HOA VÀ GLOW ----- */
+        /* ----- MÀU SẮC HOA VÀ VIỀN TĨNH ----- */
         .tier-blue { background: linear-gradient(135deg, #e0f2fe, #bae6fd); border: 1px solid #7dd3fc; color: #0284c7; }
         .tier-purple { background: linear-gradient(135deg, #f3e5f5, #e1bee7); border: 1px solid #ba68c8; color: #6a1b9a; }
-        .tier-orange { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border: 1px solid #ffb74d; color: #e65100; font-weight: 600; animation: glowOrange 2s infinite alternate; }
-        .tier-red { background: linear-gradient(135deg, #fff0f2, #ffccd5); border: 2px solid #e63946; color: #d90429; font-weight: 700; animation: glowRed 2s infinite alternate; }
+        .tier-orange { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border: 1px solid #ffb74d; color: #e65100; font-weight: 600; }
+        .tier-red { background: linear-gradient(135deg, #fff0f2, #ffccd5); border: 2px solid #e63946; color: #d90429; font-weight: 700; }
 
         /* Text màu cho chữ phẩm chất trong ô tìm kiếm */
         .text-tier-red { color: #d90429; font-weight: 700; }
@@ -142,11 +130,11 @@
         .flower-empty { border: 2px dashed #90e0ef; background: rgba(255,255,255,0.8); color: var(--sea-main); }
         .flower-not-found { border: 2px dashed #e76f51; background: rgba(255,255,255,0.8); color: #e76f51; text-align: center; font-weight: 600;}
 
-        /* Áp dụng hào quang cho viền ô tìm kiếm nếu là hoa Đỏ / Cam */
-        .flower-found.box-tier-red { border-color: #e63946; animation: glowRed 2s infinite alternate; }
-        .flower-found.box-tier-orange { border-color: #ffb74d; animation: glowOrange 2s infinite alternate; }
-        .flower-empty.box-tier-red { border-color: #e63946; animation: glowRed 2s infinite alternate; }
-        .flower-empty.box-tier-orange { border-color: #ffb74d; animation: glowOrange 2s infinite alternate; }
+        /* Áp dụng màu viền tĩnh cho ô tìm kiếm nếu là hoa Đỏ / Cam */
+        .flower-found.box-tier-red { border-color: #e63946; border-width: 2.5px; }
+        .flower-found.box-tier-orange { border-color: #ffb74d; border-width: 2.5px; }
+        .flower-empty.box-tier-red { border-color: #e63946; border-width: 2.5px; }
+        .flower-empty.box-tier-orange { border-color: #ffb74d; border-width: 2.5px; }
 
 
         /* ----- TỐI ƯU PC (2 CỘT CHUYÊN NGHIỆP) ----- */
@@ -286,7 +274,6 @@
                 if (row.length < 2) continue;
                 let flowerName = standardizeName(row[0].replace(/^"|"$/g, ''));
                 
-                // Đã tối ưu hóa đọc dữ liệu bỏ qua dấu tiếng Việt để không bị lỗi
                 let rawTier = row[1] ? row[1].replace(/^"|"$/g, '') : '';
                 let tierStrNoTone = removeVietnameseTones(rawTier);
                 let xuStr = row[2] ? row[2].replace(/^"|"$/g, '').trim().toLowerCase() : '';
@@ -420,17 +407,14 @@
             return;
         }
 
-        // Logic bổ sung hiển thị Phẩm màu hoa khi tìm kiếm
         searchResultArea.innerHTML = sortedMatches.map(name => {
             const owners = (flowerOwnersMap.get(name) || [])
                 .sort((a, b) => a.totalCount - b.totalCount)
                 .map(m => m.name);
 
-            // Lấy điểm (từ 1 đến 4) của loại hoa này
             const fData = flowerTierMap.get(name);
             const score = fData ? fData.score : 2;
             
-            // Map để lấy chữ hiển thị và class theo điểm phẩm chất
             const tierInfo = {
                 4: { text: "Hoa phẩm Đỏ", colorClass: "text-tier-red", boxClass: "box-tier-red" },
                 3: { text: "Hoa phẩm Cam", colorClass: "text-tier-orange", boxClass: "box-tier-orange" },
